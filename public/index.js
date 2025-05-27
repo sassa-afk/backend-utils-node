@@ -1,5 +1,8 @@
 require("dotenv").config();
-const Mail = require("./mail");
+
+const Mail = require("./Mail");
+const objMail = new Mail ();
+
 
 const express = require("express");
 const lermail = require("nodemailer");
@@ -23,7 +26,7 @@ app.post( "/mail/sendMain" , async (req , res ) =>{
 
 	try{
 		
-		let retorno  = lermail.sendMailLerSimple(hst , port , secure , user , pass , mailTo  , titulo , msgHTML , msgText);
+		let retorno  = objMail.sendMailLerSimple(hst , port , secure , user , pass , mailTo  , titulo , msgHTML , msgText);
 
 		return res.status(200).json({ mesage : retorno });
 	}catch(err){
