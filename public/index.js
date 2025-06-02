@@ -1,10 +1,5 @@
 require("dotenv").config();
 
-const Mail = require("./Mail");
-const objMail = new Mail();
-
-// const Wapp = require ("./Venom"); // <---
-// const objVenom = new Wapp(); // <---
 
 const express = require("express");
 const lermail = require("nodemailer");
@@ -12,8 +7,10 @@ const lermail = require("nodemailer");
 const app = express();
 app.use(express.json());
 
-
-
+// --------------------------------------------------------
+const Mail = require("./Mail");
+const objMail = new Mail();
+// --------------------------------------------------------
 app.get("/mail/enviar", async (req, res) => {
   return res.json({ mesage: `ola mundo ` });
 });
@@ -77,6 +74,26 @@ app.post("/mail/sendMain", async (req, res) => {
 
 // });
 
+const Telegraf = require ('Telegraf');
+const telegram = new Telegraf () ;
+
+app.post( "/telegram/sendTel_1" , async (req , res ) =>{
+
+  const { token , msg , telefone } req.body ; 
+
+  if( !token || !msg || !telefone){
+    return res.json ({ mesage : 'Parametros invalidos'});
+  }
+
+  try{
+    telegram.sendMsg1(token , msg , telefone) ;
+    return res.status(200).json( mesage : telegram.log );
+  }catch(er){
+    return res.status(500).json(mesage : er );
+
+  }
+
+});
 
 app.listen(3000, () => {
   console.log("Servidor ativo na porta 3000");
