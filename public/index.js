@@ -74,25 +74,22 @@ app.post("/mail/sendMain", async (req, res) => {
 
 // });
 
-const Telegraf = require ('Telegraf');
-const telegram = new Telegraf () ;
+const TelegramService = require('./TelegramService'); // nome do arquivo
+const telegram = new TelegramService();
 
-app.post( "/telegram/sendTel_1" , async (req , res ) =>{
+app.post("/telegram/sendTel_1", async (req, res) => {
+  const { token, msg, telefone } = req.body;
 
-  const { token , msg , telefone } =  req.body ; 
-
-  if( !token || !msg || !telefone){
-    return res.json ({ mesage : 'Parametros invalidos'});
+  if (!token || !msg || !telefone) {
+    return res.status(400).json({ message: 'Parâmetros inválidos' });
   }
 
-  try{
-    telegram.sendMsg1(token , msg , telefone) ;
-    return res.status(200).json( {mesage : telegram.log} );
-  }catch(er){
-    return res.status(500).json({mesage : er} );
-
+  try {
+    const resposta = await telegram.sendMsg1(token, msg, telefone);
+    return res.status(200).json({ message: resposta.log });
+  } catch (err) {
+    return res.status(500).json({ message: `Erro no servidor: ${err}` });
   }
-
 });
 
 app.listen(3000, () => {
