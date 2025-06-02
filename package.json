@@ -2,7 +2,7 @@
   "name": "sendMesage",
   "version": "0.1.0",
   "description": "envio de msgs de canais simples",
-  "main": "index.js",
+  "main": "public/index.js",
 	"scripts": {
 	  "start": "node public/index.js"
 	},
