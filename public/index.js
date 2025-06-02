@@ -87,9 +87,9 @@ app.post( "/telegram/sendTel_1" , async (req , res ) =>{
 
   try{
     telegram.sendMsg1(token , msg , telefone) ;
-    return res.status(200).json( mesage : telegram.log );
+    return res.status(200).json( {mesage : telegram.log} );
   }catch(er){
-    return res.status(500).json(mesage : er );
+    return res.status(500).json({mesage : er} );
 
   }
 
