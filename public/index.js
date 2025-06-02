@@ -70,7 +70,7 @@ app.post("/wapp/auth" , async (req , res )=>{
     return res.status(200).json{(mesage : reposta.log )} 
   }catch( er ){
 
-    return res.status(500).json( { err : `Erro : ${er}` } );
+    return res.status(500).json({ mesage : `Erro : ${er}`}) ;
  }  
    
 
