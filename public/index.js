@@ -67,7 +67,7 @@ app.post("/wapp/auth" , async (req , res )=>{
 
  try{
     const reposta = await objVenom.startSessaoVenom(); 
-    return res.status(200).json{(mesage : reposta.log )} 
+    return res.status(200).json({mesage : reposta.log }); 
   }catch( er ){
 
     return res.status(500).json({ mesage : `Erro : ${er}`}) ;
