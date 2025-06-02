@@ -1,12 +1,12 @@
 const venom = require('venom-bot');
-const def = new Default(); // Supondo que exista uma classe Default com método dateFormat()
+const def = new Default(); 
 
 class Venom {
 
 	async startSessaoVenom() {
 		try {
-			// Define o client como atributo da instância
-			this.client = await venom.create({
+ 
+ 			this.client = await venom.create({
 				session: 'session-name',
 			});
 

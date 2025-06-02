@@ -3,11 +3,16 @@ require("dotenv").config();
 const Mail = require("./Mail");
 const objMail = new Mail();
 
+// const Wapp = require ("./Venom"); // <---
+// const objVenom = new Wapp(); // <---
+
 const express = require("express");
 const lermail = require("nodemailer");
 
 const app = express();
 app.use(express.json());
+
+
 
 app.get("/mail/enviar", async (req, res) => {
   return res.json({ mesage: `ola mundo ` });
@@ -52,6 +57,26 @@ app.post("/mail/sendMain", async (req, res) => {
       .json({ mesage: `Erro na execução do processo ${err.message}` });
   }
 });
+
+
+
+const Wapp = require ("./Venom"); // <---
+const objVenom = new Wapp(); // <---
+
+app.post("/wapp/auth" , async (req , res )=>{
+
+ try{
+    const reposta = await objVenom.startSessaoVenom(); 
+    return res.status(200).json{(mesage : reposta.log )} 
+  }catch( er ){
+
+    return res.status(500).json( { err : `Erro : ${er}` } );
+ }  
+   
+
+
+});
+
 
 app.listen(3000, () => {
   console.log("Servidor ativo na porta 3000");
