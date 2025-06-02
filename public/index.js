@@ -79,7 +79,7 @@ const telegram = new Telegraf () ;
 
 app.post( "/telegram/sendTel_1" , async (req , res ) =>{
 
-  const { token , msg , telefone } req.body ; 
+  const { token , msg , telefone } =  req.body ; 
 
   if( !token || !msg || !telefone){
     return res.json ({ mesage : 'Parametros invalidos'});
