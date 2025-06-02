@@ -60,22 +60,22 @@ app.post("/mail/sendMain", async (req, res) => {
 
 
 
-const Wapp = require ("./Venom"); // <---
-const objVenom = new Wapp(); // <---
+// const Wapp = require ("./Venom"); // <---
+// const objVenom = new Wapp(); // <---
 
-app.post("/wapp/auth" , async (req , res )=>{
+// app.post("/wapp/auth" , async (req , res )=>{
 
- try{
-    const reposta = await objVenom.startSessaoVenom(); 
-    return res.status(200).json({mesage : reposta.log }); 
-  }catch( er ){
+//  try{
+//     const reposta = await objVenom.startSessaoVenom(); 
+//     return res.status(200).json({mesage : reposta.log }); 
+//   }catch( er ){
 
-    return res.status(500).json({ mesage : `Erro : ${er}`}) ;
- }  
+//     return res.status(500).json({ mesage : `Erro : ${er}`}) ;
+//  }  
    
 
 
-});
+// });
 
 
 app.listen(3000, () => {

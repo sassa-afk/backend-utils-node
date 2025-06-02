@@ -3,53 +3,53 @@ const def = new Default();
 
 class Venom {
 
-	async startSessaoVenom() {
-		try {
+	// async startSessaoVenom() {
+	// 	try {
  
- 			this.client = await venom.create({
-				session: 'session-name',
-			});
+ 	// 		this.client = await venom.create({
+	// 			session: 'session-name',
+	// 		});
 
-			const device = await this.client.getHostDevice();
+	// 		const device = await this.client.getHostDevice();
 
-			console.log('Conexão ativa no Venom');
-			return {
-				log: `Sessão ativa às ${def.dateFormat()} | Número: ${device.wid}`
-			};
+	// 		console.log('Conexão ativa no Venom');
+	// 		return {
+	// 			log: `Sessão ativa às ${def.dateFormat()} | Número: ${device.wid}`
+	// 		};
 
-		} catch (err) {
-			console.error(`Erro ao iniciar sessão: ${err}`);
-			return {
-				log: `Erro ao iniciar a sessão: ${err}`
-			};
-		}
-	}
+	// 	} catch (err) {
+	// 		console.error(`Erro ao iniciar sessão: ${err}`);
+	// 		return {
+	// 			log: `Erro ao iniciar a sessão: ${err}`
+	// 		};
+	// 	}
+	// }
 
-	async sendMesageVenom(numero, mensagem) {
-		if (!this.client) {
-			console.log('Não há sessão aberta');
-			return {
-				log: `Não há sessão ativa em ${def.dateFormat()}`
-			};
-		}
+	// async sendMesageVenom(numero, mensagem) {
+	// 	if (!this.client) {
+	// 		console.log('Não há sessão aberta');
+	// 		return {
+	// 			log: `Não há sessão ativa em ${def.dateFormat()}`
+	// 		};
+	// 	}
 
-		try {
-			await this.client.sendText(`${numero}@c.us`, mensagem);
+	// 	try {
+	// 		await this.client.sendText(`${numero}@c.us`, mensagem);
 
-			const device = await this.client.getHostDevice();
+	// 		const device = await this.client.getHostDevice();
 
-			console.log(`Mensagem enviada com sucesso às ${def.dateFormat()} | De: ${device.wid} | Para: ${numero}`);
-			return {
-				log: `Mensagem enviada com sucesso às ${def.dateFormat()} | De: ${device.wid} | Para: ${numero}`
-			};
+	// 		console.log(`Mensagem enviada com sucesso às ${def.dateFormat()} | De: ${device.wid} | Para: ${numero}`);
+	// 		return {
+	// 			log: `Mensagem enviada com sucesso às ${def.dateFormat()} | De: ${device.wid} | Para: ${numero}`
+	// 		};
 
-		} catch (er) {
-			console.log('Erro: ', er);
-			return {
-				log: `Erro ao enviar mensagem em ${def.dateFormat()}: ${er}`
-			};
-		}
-	}
+	// 	} catch (er) {
+	// 		console.log('Erro: ', er);
+	// 		return {
+	// 			log: `Erro ao enviar mensagem em ${def.dateFormat()}: ${er}`
+	// 		};
+	// 	}
+	// }
 }
 
 exports.modulo = Venom;
