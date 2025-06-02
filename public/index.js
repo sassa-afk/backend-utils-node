@@ -74,7 +74,7 @@ app.post("/mail/sendMain", async (req, res) => {
 
 // });
 
-const TelegramService = require('./TelegramService'); // nome do arquivo
+const TelegramService = require('./Telegraf'); // nome do arquivo
 const telegram = new TelegramService();
 
 app.post("/telegram/sendTel_1", async (req, res) => {
