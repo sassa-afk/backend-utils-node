@@ -1,18 +1,24 @@
-const { Telegraf } = require('telegraf');  
-const Default = require('./Default');  
+const { Telegraf } = require('telegraf');
+const Default = require('./Default');
 
 const def = new Default();
 
 class TelegramService {
-  async sendMsg1(token, msg, telefone) {
+  async sendMsg1(token, msg, chatId) {
     try {
       const bot = new Telegraf(token);
-      await bot.telegram.sendMessage(telefone, msg);
-      console.log(`Mensagem enviada para: ${telefone} às ${def.dateFormat()}`);
-      return { log: `Mensagem enviada para: ${telefone} às ${def.dateFormat()}` };
+
+      await bot.telegram.sendMessage(chatId, msg);
+
+      const logMsg = `Mensagem enviada para: ${chatId} às ${def.dateFormat()}`;
+      console.log(logMsg);
+
+      return { log: logMsg };
     } catch (err) {
-      console.log(`Erro ao enviar mensagem: ${err} às ${def.dateFormat()}`);
-      return { log: `Erro às ${def.dateFormat()}, ${err}` };
+      const errorMsg = `Erro ao enviar mensagem: ${err.message} às ${def.dateFormat()}`;
+      console.error(errorMsg);
+
+      return { log: errorMsg };
     }
   }
 }
