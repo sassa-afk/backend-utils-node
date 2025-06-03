@@ -22,7 +22,6 @@ app.post("/mail/sendMain", async (req, res) => {
   if (
     !hst ||
     !port ||
-    !secure ||
     !user ||
     !pass ||
     !mailTo ||
