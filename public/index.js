@@ -50,7 +50,7 @@ app.post("/mail/sendMain", async (req, res) => {
   } catch (err) {
     return res
       .status(500)
-      .json({ mesage: `Erro na execução do processo ${err.message}` });
+      .json({ mesage: `Erro na execução do processo ${ err.message}` });
   }
 });
 

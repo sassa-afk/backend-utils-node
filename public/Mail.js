@@ -48,7 +48,7 @@ class Mail {
 
     } catch (er) {
 
-         console.error(`Email sending failed at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Error: ${err.message}`);
+         console.error(`Email sending failed at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Error: ${er.message}`);
 
       // let retorno = `log`: `Email sending failed at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Error: ${err.message}`  ;
        let retorno =   `Email sending failed at ${def.dateFormat()} | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Error: ${er.message}` ;
