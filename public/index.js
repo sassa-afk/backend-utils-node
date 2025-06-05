@@ -112,9 +112,12 @@ app.post("/google/newToken" , async ( req , res ) =>{
 
     const nwToken = await calender.newToken( client_id , client_secret );
 
+    console.log(`tolken ok gerado ${ nwToken.data }`);
     return res.status(200).json( {mesage : 'new Token' , data : `${ nwToken.data }`});
 
+
   }catch(er){
+    console.error(er)
     return res.status(500).json( { mesage : `Erro ao gerar token  ${er} ` });
   }
 
