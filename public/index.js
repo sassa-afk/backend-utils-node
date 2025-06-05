@@ -1,6 +1,9 @@
 require("dotenv").config();
 
 
+const Default = require("./Default");
+const def = new Default() ; 
+
 const express = require("express");
 const lermail = require("nodemailer");
 
@@ -11,6 +14,7 @@ app.use(express.json());
 const Mail = require("./Mail");
 const objMail = new Mail();
 // --------------------------------------------------------
+
 app.get("/mail/enviar", async (req, res) => {
   return res.json({ mesage: `ola mundo ` });
 });
@@ -29,6 +33,7 @@ app.post("/mail/sendMain", async (req, res) => {
     !msgHTML ||
     !msgText
   ) {
+    def.logs( false , "Solicitação de envio de email parametros invalidos") ; // <--------- LOG
     return res
       .status(500)
       .json({ mesage: "Parametros invalidos / imcompletos" });
@@ -46,8 +51,12 @@ app.post("/mail/sendMain", async (req, res) => {
       msgHTML,
       msgText
     );
+
+    def.logs( true , `${retorno.log}`) ; // <--------- LOG
     return res.status(200).json({ mesage: retorno.log });
-  } catch (err) {
+  } 
+  catch (err) {
+    def.logs( false , `Error ao enviar email : ${err.message}`) ; // <--------- LOG
     return res
       .status(500)
       .json({ mesage: `Erro na execução do processo ${ err.message}` });
@@ -100,11 +109,12 @@ app.post("/telegram/sendTel_1", async (req, res) => {
 const Calender = require('./Calender');
 const calender = new Calender();
 
-app.post("/google/newToken" , async ( req , res ) =>{
+app.post("/google/newTokenCalender" , async ( req , res ) =>{
 
   const { client_id , client_secret  } = req.body ; 
   
   if( !client_id || !client_secret ){
+    def.logs( false , ` Solicitãção token novo token google calender com parametros invalidos`) ; // <--------- LOG
     return res.status(400).json( { mesage : "Parametros invalidos" });
   }
 
@@ -112,12 +122,13 @@ app.post("/google/newToken" , async ( req , res ) =>{
 
     const nwToken = await calender.newToken( client_id , client_secret );
 
-    console.log(`tolken ok gerado ${ nwToken.data }`);
+    def.logs( true , ` Solicitação de newTokenCalender realizado com sucesso`) ; // <--------- LOG
     return res.status(200).json( {mesage : 'new Token' , data : `${ nwToken.data }`});
 
 
   }catch(er){
-    console.error(er)
+
+    def.logs( false , ` Erro na solicitação da api  newTokenCalender ${ er.message }`) ; // <--------- LOG
     return res.status(500).json( { mesage : `Erro ao gerar token  ${er} ` });
   }
 

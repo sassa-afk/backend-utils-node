@@ -11,6 +11,15 @@ class Default {
 
 	  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 	}
+
+	log( tipo , mensagem ){
+
+			if(tipo === true){
+				console.log(`At ${dateFormat()} - ${mensagem}`)
+			}esle{
+				console.error(`At ${dateFormat()} - ${mensagem}`)
+			}
+	}
 }
 
 module.exports = Default;
