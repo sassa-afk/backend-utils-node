@@ -15,9 +15,9 @@ class Default {
 	logs( tipo , mensagem ){
 
 			if(tipo === true){
-				console.log(`At ${dateFormat()} - ${mensagem}`)
+				console.log(`At ${ this.dateFormat() } - ${mensagem}`)
 			}else{
-				console.error(`At ${dateFormat()} - ${mensagem}`)
+				console.error(`At ${ this.dateFormat() } - ${mensagem}`)
 			}
 	}
 }
