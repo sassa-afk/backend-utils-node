@@ -55,6 +55,7 @@ app.post("/mail/sendMain", async (req, res) => {
 });
 
 
+// -----------------------------------------------------------------------------
 
 // const Wapp = require ("./Venom"); // <---
 // const objVenom = new Wapp(); // <---
@@ -73,6 +74,9 @@ app.post("/mail/sendMain", async (req, res) => {
 
 // });
 
+
+// -----------------------------------------------------------------------------
+
 const TelegramService = require('./Telegraf'); // nome do arquivo
 const telegram = new TelegramService();
 
@@ -90,6 +94,33 @@ app.post("/telegram/sendTel_1", async (req, res) => {
     return res.status(500).json({ message: `Erro no servidor: ${err}` });
   }
 });
+
+// -----------------------------------------------------------------------------
+
+const Calender = require('./Calender');
+const calender = new Calender();
+
+app.get("google/newToken" , async ( req , res ) =>{
+
+  const { client_id , client_secret  } = req.body ; 
+  
+  if( !client_id || !client_secret ){
+    return res.status(400).json( { mesage : "Parametros invalidos" });
+  }
+
+  try{
+
+    const nwToken = await calender.newToken( client_id , client_secret );
+
+    return res.status(200).json()
+
+  }catch(er){
+    return res.status(500).json( { mesage : `Erro ao gerar token  ${er} ` });
+  }
+  
+});
+
+
 
 app.listen(3000, () => {
   console.log("Servidor ativo na porta 3000");
