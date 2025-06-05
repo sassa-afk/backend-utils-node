@@ -4,6 +4,26 @@ const def = new Default();
 
 class Calender {
 
+  async getMethod ( urlParametros , token ){
+
+  	try{
+
+	  	const response = await fetch(urlParametros , { 
+	  		method : 'GET' , 
+	  		headers : { 
+	  			'Authorization' : 	`Bearer ${token}`,
+	  			'Content-type' : 'application/json'
+		  	} 
+	  	});
+	  	const data = await response.json();
+	  	return data ;
+
+	  }catch(er){
+	  	return er.message ;
+	  }
+
+  }
+
 
   async newToken ( client_id, client_secret ){
 
@@ -16,7 +36,7 @@ class Calender {
   		const oauth2Client = new google.auth.OAuth2(
   			client_id ,
   			client_secret,
-  			"https://sendmesage.onrender.com"
+  			"https://sendmesage.onrender.com/mail/enviar"
   		);
 
   		const authURL = oauth2Client.generateAuthUrl({
@@ -29,28 +49,21 @@ class Calender {
 
  
 	    return {
-	      log: "Link de autenticação gerado com sucesso. Acesse o link, autorize e copie o código da URL de retorno.",
-	      authURL,
-	      data : `curl -X POST https://oauth2.googleapis.com/token \\
-	  -H "Content-Type: application/x-www-form-urlencoded" \\
-	  -d "code=COLE_O_CODE_AQUI" \\
-	  -d "client_id=${client_id}" \\
-	  -d "client_secret=${client_secret}" \\
-	  -d "redirect_uri=https://sendmesage.onrender.com/mail/enviar" \\
-	  -d "grant_type=authorization_code"`
+		      log: "Link de autenticação gerado com sucesso. Acesse o link, autorize e copie o código da URL de retorno.",
+		      authURL,
+		      data : `curl -X POST https://oauth2.googleapis.com/token \\
+		  -H "Content-Type: application/x-www-form-urlencoded" \\
+		  -d "code=COLE_O_CODE_AQUI" \\
+		  -d "client_id=${client_id}" \\
+		  -d "client_secret=${client_secret}" \\
+		  -d "redirect_uri=https://sendmesage.onrender.com/mail/enviar" \\
+		  -d "grant_type=authorization_code"`
 	    };
-	    // return {
-	    //   log: `New token ok, at ${def.dateFormat()}`,
-	    //   data: authURL
-	    // };
-
- 		
 
   	}catch( er ){
   		return { log: false, data: `Error at ${def.dateFormat()}, ${er.message || er}` };
   	}
   }
-
 
   async validToken(token, refresh_token, client_id, client_secret) {
     try {
@@ -92,7 +105,9 @@ class Calender {
     }
   }
 
-
+  async MyCalenders ( token ) {
+  	return this.getMethod( "https://www.googleapis.com/calendar/v3/calendars/primary/events" , token );
+  }
 
 
 }
