@@ -109,7 +109,7 @@ app.post("/telegram/sendTel_1", async (req, res) => {
 const Calender = require('./Calender');
 const calender = new Calender();
 
-app.post("/google/newTokenCalender" , async ( req , res ) =>{
+app.post("/google/calender/newToken" , async ( req , res ) =>{
 
   const { client_id , client_secret  } = req.body ; 
   
@@ -133,6 +133,19 @@ app.post("/google/newTokenCalender" , async ( req , res ) =>{
   }
 });
 
+app.get("/google/calender/NumCaleder" , async (req , res ) => {
+  const {token} = req.query ;
+  
+  if(!token){
+    def.logs( false , ` Solicitãção ver calendario google do calender com parametros nulos `) ; // <--------- LOG
+  }
+
+
+  const reposta = await calender.MyCalenders( token);
+
+  return res.json({ mesage : reposta })
+
+})
 
 
 app.listen(3000, () => {
