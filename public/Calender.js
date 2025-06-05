@@ -27,10 +27,22 @@ class Calender {
 
   		});
 
+ 
 	    return {
-	      log: `New token ok, at ${def.dateFormat()}`,
-	      data: authURL
+	      log: "Link de autenticação gerado com sucesso. Acesse o link, autorize e copie o código da URL de retorno.",
+	      authURL,
+	      data : `curl -X POST https://oauth2.googleapis.com/token \\
+	  -H "Content-Type: application/x-www-form-urlencoded" \\
+	  -d "code=COLE_O_CODE_AQUI" \\
+	  -d "client_id=${client_id}" \\
+	  -d "client_secret=${client_secret}" \\
+	  -d "redirect_uri=https://sendmesage.onrender.com/mail/enviar" \\
+	  -d "grant_type=authorization_code"`
 	    };
+	    // return {
+	    //   log: `New token ok, at ${def.dateFormat()}`,
+	    //   data: authURL
+	    // };
 
  		
 
