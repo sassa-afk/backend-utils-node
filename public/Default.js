@@ -12,11 +12,11 @@ class Default {
 	  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 	}
 
-	log( tipo , mensagem ){
+	logs( tipo , mensagem ){
 
 			if(tipo === true){
 				console.log(`At ${dateFormat()} - ${mensagem}`)
-			}esle{
+			}else{
 				console.error(`At ${dateFormat()} - ${mensagem}`)
 			}
 	}
