@@ -37,19 +37,16 @@ class Mail {
         text: msgText,
 
       });
-
-
  
-      console.log(`Email sent successfully at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Message ID: ${response.messageId}`);
-       // let retorno =   `Email sent successfully at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Message ID: ${response.messageId}` ;
-             let retorno =   `Email sent successfully at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Message ID: ${response.messageId}` ;
+      // console.log(`Email sent successfully at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Message ID: ${response.messageId}`);
+      // let retorno =   `Email sent successfully at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Message ID: ${response.messageId}` ;
+      let retorno =   `Email sent successfully at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Message ID: ${response.messageId}` ;
 
        return { log : retorno } ;
 
     } catch (er) {
 
-         console.error(`Email sending failed at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Error: ${er.message}`);
-
+      // console.error(`Email sending failed at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Error: ${er.message}`);
       // let retorno = `log`: `Email sending failed at ${ def.dateFormat() } | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Error: ${err.message}`  ;
        let retorno =   `Email sending failed at ${def.dateFormat()} | From: ${user} | To: ${mailTo} | Subject: "${titulo}" | Error: ${er.message}` ;
        return {  log : retorno } ;
