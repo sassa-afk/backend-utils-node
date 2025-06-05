@@ -2,7 +2,7 @@ const { google } = require("googleapis");
 const Default = require("./Default");
 const def = new Default();
 
-class Calendar {
+class Calender {
 
 
   async newToken ( client_id, client_secret ){
@@ -19,26 +19,24 @@ class Calendar {
   			"https://sendmesage.onrender.com"
   		);
 
-  		const autURL = oauth2Client.generateAuthUrl({
+  		const authURL = oauth2Client.generateAuthUrl({
 
-  			access_type = "online",
+  			access_type : "online" ,
   			scope : SCOPES ,
   			prompt : "consent" ,
 
   		});
 
-  		return {
-  			log : ` New token ok, at${data.dateFormat()} ` ,
-  			data : autURL
-
-  		}
+	    return {
+	      log: `New token ok, at ${def.dateFormat()}`,
+	      data: authURL
+	    };
 
  		
 
   	}catch( er ){
   		return { log: false, data: `Error at ${def.dateFormat()}, ${er.message || er}` };
   	}
-
   }
 
 
@@ -83,6 +81,8 @@ class Calendar {
   }
 
 
+
+
 }
 
-module.exports = Calendar;
+module.exports = Calender;
