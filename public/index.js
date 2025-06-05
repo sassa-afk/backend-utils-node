@@ -123,7 +123,7 @@ app.post("/google/newTokenCalender" , async ( req , res ) =>{
     const nwToken = await calender.newToken( client_id , client_secret );
 
     def.logs( true , ` Solicitação de newTokenCalender realizado com sucesso`) ; // <--------- LOG
-    return res.status(200).json( {mesage : 'new Token' , data : `${ nwToken.data }`});
+    return res.status(200).json( {mesage : nwToken.authURL , data : `${ nwToken.data }`});
 
 
   }catch(er){
@@ -131,7 +131,6 @@ app.post("/google/newTokenCalender" , async ( req , res ) =>{
     def.logs( false , ` Erro na solicitação da api  newTokenCalender ${ er.message }`) ; // <--------- LOG
     return res.status(500).json( { mesage : `Erro ao gerar token  ${er} ` });
   }
-
 });
 
 
