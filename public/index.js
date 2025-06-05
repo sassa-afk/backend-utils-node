@@ -100,7 +100,7 @@ app.post("/telegram/sendTel_1", async (req, res) => {
 const Calender = require('./Calender');
 const calender = new Calender();
 
-app.post("google/newToken" , async ( req , res ) =>{
+app.post("/google/newToken" , async ( req , res ) =>{
 
   const { client_id , client_secret  } = req.body ; 
   
