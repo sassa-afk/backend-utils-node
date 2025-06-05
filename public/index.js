@@ -100,7 +100,7 @@ app.post("/telegram/sendTel_1", async (req, res) => {
 const Calender = require('./Calender');
 const calender = new Calender();
 
-app.get("google/newToken" , async ( req , res ) =>{
+app.post("google/newToken" , async ( req , res ) =>{
 
   const { client_id , client_secret  } = req.body ; 
   
@@ -117,7 +117,7 @@ app.get("google/newToken" , async ( req , res ) =>{
   }catch(er){
     return res.status(500).json( { mesage : `Erro ao gerar token  ${er} ` });
   }
-  
+
 });
 
 
