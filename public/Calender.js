@@ -2,27 +2,27 @@ const { google } = require("googleapis");
 const Default = require("./Default");
 const def = new Default();
 
-class Calender {
+class Calender extends Default {
 
-  async getMethod ( urlParametros , token ){
+  // async getMethod ( urlParametros , token ){
 
-  	try{
+  // 	try{
 
-	  	const response = await fetch(urlParametros , { 
-	  		method : 'GET' , 
-	  		headers : { 
-	  			'Authorization' : 	`Bearer ${token}`,
-	  			'Content-type' : 'application/json'
-		  	} 
-	  	});
-	  	const data = await response.json();
-	  	return data ;
+// 	  	const response = await fetch(urlParametros , { 
+// 	  		method : 'GET' , 
+// 	  		headers : { 
+// 	  			'Authorization' : 	`Bearer ${token}`,
+// 	  			'Content-type' : 'application/json'
+// 		  	} 
+// 	  	});
+// 	  	const data = await response.json();
+// 	  	return data ;
 
-	  }catch(er){
-	  	return er.message ;
-	  }
+// 	  }catch(er){
+// 	  	return er.message ;
+// 	  }
 
-  }
+  // }
 
 
   async newToken ( client_id, client_secret ){

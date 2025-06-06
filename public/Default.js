@@ -20,6 +20,27 @@ class Default {
 				console.error(`At ${ this.dateFormat() } - ${mensagem}`)
 			}
 	}
+
+	async getMethod ( urlParametros , token ){
+
+  	try{
+
+	  	const response = await fetch(urlParametros , { 
+	  		method : 'GET' , 
+	  		headers : { 
+	  			'Authorization' : 	`Bearer ${token}`,
+	  			'Content-type' : 'application/json'
+		  	} 
+	  	});
+	  	const data = await response.json();
+	  	return data ;
+
+	  }catch(er){
+	  	return er.message ;
+	  }
+  }
+
+  
 }
 
 module.exports = Default;
