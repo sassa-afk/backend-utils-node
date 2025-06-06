@@ -66,26 +66,6 @@ app.post("/mail/sendMain", async (req, res) => {
 
 // -----------------------------------------------------------------------------
 
-// const Wapp = require ("./Venom"); // <---
-// const objVenom = new Wapp(); // <---
-
-// app.post("/wapp/auth" , async (req , res )=>{
-
-//  try{
-//     const reposta = await objVenom.startSessaoVenom(); 
-//     return res.status(200).json({mesage : reposta.log }); 
-//   }catch( er ){
-
-//     return res.status(500).json({ mesage : `Erro : ${er}`}) ;
-//  }  
-   
-
-
-// });
-
-
-// -----------------------------------------------------------------------------
-
 const TelegramService = require('./Telegraf'); // nome do arquivo
 const telegram = new TelegramService();
 
@@ -133,7 +113,7 @@ app.post("/google/calender/newToken" , async ( req , res ) =>{
   }
 });
 
-app.get("/google/calender/NumCaleder" , async (req , res ) => {
+app.get("/google/calender/lsCaleder" , async ( req , res ) => {
   const {token} = req.query ;
   
   if(!token){
@@ -144,9 +124,21 @@ app.get("/google/calender/NumCaleder" , async (req , res ) => {
   const reposta = await calender.MyCalenders( token);
 
   return res.json({ mesage : reposta })
+}) ;
 
-})
+app.post("/google/calender/newEvent" , async ( req , res ) => {
 
+  const { token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax } = req.body ;
+  if(!token || !local || !descricao || !dataStart  || !dataEnd || !mailMeu || !mailConvidado || !tempMin || !tempMax){
+    return res.status(401).json({ mesage : 'Parametros obrigatorio invalidos ou nulo ' });
+  };
+
+  const retorno = await calender.newEvent ( token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax );
+  
+  return res.status(200).json({  mesage : retorno.log }) ;
+
+
+});
 
 app.listen(3000, () => {
   console.log("Servidor ativo na porta 3000");

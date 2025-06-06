@@ -105,8 +105,60 @@ class Calender extends Default {
     }
   }
 
+
+
   async MyCalenders ( token ) {
   	return this.getMethod( "https://www.googleapis.com/calendar/v3/calendars/primary/events" , token );
+  }
+
+  async newEvent ( token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax ){
+
+  	try{
+
+  		const oauth2Client = new google.auth.OAuth2();
+  		oauth2Client.setCredentials({ access_token : token });
+  		const calender = google.calender({ version : "v3" , auth : oauth2Client });
+
+		const event = {
+		  'summary': 'Google I/O 2015',
+		  'location': local,
+		  'description': descricao,
+		  'start': {
+		    'dateTime':dataStart ,
+		    'timeZone': 'America/São Paulo'
+		  },
+		  'end': {
+		    'dateTime':  dataEnd ,
+		    'timeZone': 'America/São Paulo'
+		  },
+		  'recurrence': [
+		    'RRULE:FREQ=DAILY;COUNT=2'
+		  ],
+		  'attendees': [
+		    {'email': mailMeu },
+		    {'email': mailConvidado }
+		  ],
+		  'reminders': {
+		    'useDefault': false,
+		    'overrides': [
+		      {'method': 'email', 'minutes': tempMin * tempMax}, 
+		      {'method': 'popup', 'minutes': 10}
+		    ]
+		  }
+		};
+
+		const response = await calender.event.insert({
+			calendarId : "primary",
+			resource : event ,
+		});
+
+		return { log : response.data };
+
+ 
+
+  	}catch(er){
+  		return { log : er.message };
+  	}
   }
 
 
