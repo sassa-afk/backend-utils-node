@@ -111,59 +111,50 @@ class Calender extends Default {
   	return this.getMethod( "https://www.googleapis.com/calendar/v3/calendars/primary/events" , token );
   }
 
-  async newEvent ( token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax ){
+async newEvent(token, local, descricao, dataStart, dataEnd, mailMeu, mailConvidado, tempMin, tempMax) {
+  try {
+    const oauth2Client = new google.auth.OAuth2();
+    oauth2Client.setCredentials({ access_token: token });
 
-  	try{
+    const calendar = google.calendar({ version: "v3", auth: oauth2Client });
 
-  		const oauth2Client = new google.auth.OAuth2();
-  		oauth2Client.setCredentials({ access_token : token });
-  		const calender = google.calender({ version : "v3" , auth : oauth2Client });
+    const event = {
+      summary: "Google I/O 2015",
+      location: local,
+      description: descricao,
+      start: {
+        dateTime: dataStart,
+        timeZone: "America/Sao_Paulo",
+      },
+      end: {
+        dateTime: dataEnd,
+        timeZone: "America/Sao_Paulo",
+      },
+      recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
+      attendees: [
+        { email: mailMeu },
+        { email: mailConvidado },
+      ],
+      reminders: {
+        useDefault: false,
+        overrides: [
+          { method: "email", minutes: tempMin * tempMax },
+          { method: "popup", minutes: 10 },
+        ],
+      },
+    };
 
-		const event = {
-		  'summary': 'Google I/O 2015',
-		  'location': local,
-		  'description': descricao,
-		  'start': {
-		    'dateTime':dataStart ,
-		    'timeZone': 'America/São Paulo'
-		  },
-		  'end': {
-		    'dateTime':  dataEnd ,
-		    'timeZone': 'America/São Paulo'
-		  },
-		  'recurrence': [
-		    'RRULE:FREQ=DAILY;COUNT=2'
-		  ],
-		  'attendees': [
-		    {'email': mailMeu },
-		    {'email': mailConvidado }
-		  ],
-		  'reminders': {
-		    'useDefault': false,
-		    'overrides': [
-		      {'method': 'email', 'minutes': tempMin * tempMax}, 
-		      {'method': 'popup', 'minutes': 10}
-		    ]
-		  }
-		};
+    const response = await calendar.events.insert({
+      calendarId: "primary",
+      resource: event,
+    });
 
- 		const response = await calendar.events.insert({
-			calendarId : "primary",
-			resource : event ,
-		});
-
-		def.log( true , response )
-
-		return { log : response.data };
-
- 
-
-  	}catch(er){
-  				def.log( false , er.message )
-
-  		return { log : er.message };
-  	}
+    return { log: response.data };
+  } catch (er) {
+    return { log: er };
   }
+}
+
 
 
 }
