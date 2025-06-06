@@ -147,16 +147,20 @@ class Calender extends Default {
 		  }
 		};
 
-		const response = await calender.event.insert({
+ 		const response = await calendar.events.insert({
 			calendarId : "primary",
 			resource : event ,
 		});
+
+		def.log( true , response )
 
 		return { log : response.data };
 
  
 
   	}catch(er){
+  				def.log( false , er.message )
+
   		return { log : er.message };
   	}
   }
