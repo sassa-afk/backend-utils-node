@@ -40,17 +40,19 @@ class Default {
 	  }
   }
 
-  async sendDadosMethod ( urlParametros , token , body , method ){ // pd usar post e path
+  async sendDadosMethod ( urlParametros , token , body , mtd ){ // pd usar post e path
 
   	try{
 
-  		const response  = await fetch ( urlParametros {
-  			method : method ,
+  		const response  = await fetch (
+
+  		 urlParametros , {
+  			method : mtd ,
 	  		headers : { 
 	  			'Authorization' : 	`Bearer ${token}`,
 	  			'Content-type' : 'application/json'
 		  	} ,
-  			body : JSON.stringfy(body) ,
+  			body : mtd !== 'GET' ? JSON.stringfy(body) : null
   		});
 
   		const data = await response.json();
