@@ -4,27 +4,6 @@ const def = new Default();
 
 class Calender extends Default {
 
-  // async getMethod ( urlParametros , token ){
-
-  // 	try{
-
-// 	  	const response = await fetch(urlParametros , { 
-// 	  		method : 'GET' , 
-// 	  		headers : { 
-// 	  			'Authorization' : 	`Bearer ${token}`,
-// 	  			'Content-type' : 'application/json'
-// 		  	} 
-// 	  	});
-// 	  	const data = await response.json();
-// 	  	return data ;
-
-// 	  }catch(er){
-// 	  	return er.message ;
-// 	  }
-
-  // }
-
-
   async newToken ( client_id, client_secret ){
 
   	try{
@@ -65,7 +44,7 @@ class Calender extends Default {
   	}
   }
 
-  async validToken(token, refresh_token, client_id, client_secret) {
+  async validToken( token, refresh_token, client_id, client_secret ) {
     try {
       const oauth2Client = new google.auth.OAuth2();
       oauth2Client.setCredentials({ access_token: token });
@@ -86,6 +65,7 @@ class Calender extends Default {
   }
 
   async refreshToken(refresh_token, client_id, client_secret) {
+
     const oauth2Client = new google.auth.OAuth2(
       client_id,
       client_secret,
@@ -105,57 +85,69 @@ class Calender extends Default {
     }
   }
 
-
-
   async MyCalenders ( token ) {
-  	return this.getMethod( "https://www.googleapis.com/calendar/v3/calendars/primary/events" , token );
+  	return this.getMethod( "https://www.googleapis.com/calendar/v3/calendars/primary/events" , token  );
   }
 
-async newEvent(token, local, descricao, dataStart, dataEnd, mailMeu, mailConvidado, tempMin, tempMax) {
-  try {
-    const oauth2Client = new google.auth.OAuth2();
-    oauth2Client.setCredentials({ access_token: token });
+  async newEvent(token, local, descricao, dataStart, dataEnd, mailMeu, mailConvidado, tempMin, tempMax) {
 
-    const calendar = google.calendar({ version: "v3", auth: oauth2Client });
+	  try {
+	    const oauth2Client = new google.auth.OAuth2();
+	    oauth2Client.setCredentials({ access_token: token });
 
-    const event = {
-      summary: "Google I/O 2015",
-      location: local,
-      description: descricao,
-      start: {
-        dateTime: dataStart,
-        timeZone: "America/Sao_Paulo",
-      },
-      end: {
-        dateTime: dataEnd,
-        timeZone: "America/Sao_Paulo",
-      },
-      recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
-      attendees: [
-        { email: mailMeu },
-        { email: mailConvidado },
-      ],
-      reminders: {
-        useDefault: false,
-        overrides: [
-          { method: "email", minutes: tempMin * tempMax },
-          { method: "popup", minutes: 10 },
-        ],
-      },
-    };
+	    const calendar = google.calendar({ version: "v3", auth: oauth2Client });
 
-    const response = await calendar.events.insert({
-      calendarId: "primary",
-      resource: event,
-    });
+	    const event = {
+	      summary: "Google I/O 2015",
+	      location: local,
+	      description: descricao,
+	      start: {
+	        dateTime: dataStart,
+	        timeZone: "America/Sao_Paulo",
+	      },
+	      end: {
+	        dateTime: dataEnd,
+	        timeZone: "America/Sao_Paulo",
+	      },
+	      recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
+	      attendees: [
+	        { email: mailMeu },
+	        { email: mailConvidado },
+	      ],
+	      reminders: {
+	        useDefault: false,
+	        overrides: [
+	          { method: "email", minutes: tempMin * tempMax },
+	          { method: "popup", minutes: 10 },
+	        ],
+	      },
+	    };
 
-    return { log: response.data };
-  } catch (er) {
-    return { log: er };
+	    const response = await calendar.events.insert({
+	      calendarId: "primary",
+	      resource: event ,
+	    });
+
+	    return { log: response.data };
+	  } catch (er) {
+	    return { log: er };
+	  }
   }
-}
+
+  async updateEvent ( token , idTarefa , summary , location , description , dataStart , dataEnd ) {
+
+  	const body {
+  		'summary': summary ,
+    	'location': location ,
+    	'description': description ,
+  		"dataStart": dataStart ,
+		"dataEnd": dataEnd 
+  	};
 
 
+  	log( true , `At ${ dateFormat() }, solicitado updatEvent  `);
+  	return this.sendDadosMethod( `https://www.googleapis.com/calendar/v3/calendars/primary/events/${ idTarefa }` , token , body , "PATCH")
+  }
 
 }
 

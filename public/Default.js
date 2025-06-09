@@ -21,7 +21,7 @@ class Default {
 			}
 	}
 
-	async getMethod ( urlParametros , token ){
+  async getMethod ( urlParametros , token ){
 
   	try{
 
@@ -40,7 +40,30 @@ class Default {
 	  }
   }
 
-  
+  async sendDadosMethod ( urlParametros , token , body , method ){ // pd usar post e path
+
+  	try{
+
+  		const response  = await fetch ( urlParametros {
+  			method : method ,
+	  		headers : { 
+	  			'Authorization' : 	`Bearer ${token}`,
+	  			'Content-type' : 'application/json'
+		  	} ,
+  			body : JSON.stringfy(body) ,
+  		});
+
+  		const data = await response.json();
+  		return data ;
+
+  	}catch( er ){
+  		return er ;
+  	}
+  }
+
+
+
+
 }
 
 module.exports = Default;

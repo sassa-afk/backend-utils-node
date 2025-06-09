@@ -133,9 +133,34 @@ app.post("/google/calender/newEvent" , async ( req , res ) => {
     return res.status(401).json({ mesage : 'Parametros obrigatorio invalidos ou nulo ' });
   };
 
-  const retorno = await calender.newEvent ( token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax );
-  
-  return res.status(200).json({  mesage : retorno.log }) ;
+  try{
+    const retorno = await calender.newEvent ( token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax );
+    return res.status(200).json({  mesage : retorno.log }) ;
+  }cacth( er ){
+    return res.status(500).json({ message: 'Erro ao criar evento.', error: err.message || err });
+  }
+});
+
+app.path("/google/calender/edtEvent" , async (req , res )=>{
+
+  const { token , idTarefa , summary , location , description , dataStart , dataEnd } = req.body;
+
+  if( !token || !idTarefa || !summary || !location || !description || !dataStart || !dataEnd ){
+    return res.status(400).json({ mesage : 'Parametros invalidos ou nulo' });
+  }
+
+  try{
+
+    const resposta = calender.updateEvent ( token , idTarefa , summary , location , description , dataStart , dataEnd ) ;
+
+    def.logs( true , `At ${def.dateFormat()} : solicitação realizada com sucesso ${resposta}` );
+
+    return res.status(200).json( { mesage : reposta });
+
+  }catch(er) {
+    def.logs( false , `At ${def.dateFormat()} : ${er}` );
+    return res.status(500).json( { mesage : `At ${} , `})
+  }
 
 
 });
