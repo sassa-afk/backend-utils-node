@@ -136,7 +136,7 @@ app.post("/google/calender/newEvent" , async ( req , res ) => {
   try{
     const retorno = await calender.newEvent ( token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax );
     return res.status(200).json({  mesage : retorno.log }) ;
-  }cacth( er ){
+  }catch( er ){
     return res.status(500).json({ message: 'Erro ao criar evento.', error: err.message || err });
   }
 });
@@ -157,7 +157,7 @@ app.path("/google/calender/edtEvent" , async (req , res )=>{
 
     return res.status(200).json( { mesage : reposta });
 
-  }catch(er) {
+  }catch(er) { 
     def.logs( false , `At ${def.dateFormat()} : ${er}` );
     return res.status(500).json( { mesage : `At ${} , `})
   }
