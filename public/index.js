@@ -141,29 +141,26 @@ app.post("/google/calender/newEvent" , async ( req , res ) => {
   }
 });
 
-app.path("/google/calender/edtEvent" , async (req , res )=>{
+app.patch("/google/calender/edtEvent", async (req, res) => {
+  const { token, idTarefa, summary, location, description, dataStart, dataEnd } = req.body;
 
-  const { token , idTarefa , summary , location , description , dataStart , dataEnd } = req.body;
-
-  if( !token || !idTarefa || !summary || !location || !description || !dataStart || !dataEnd ){
-    return res.status(400).json({ mesage : 'Parametros invalidos ou nulo' });
+  if (!token || !idTarefa || !summary || !location || !description || !dataStart || !dataEnd) {
+    return res.status(400).json({ mesage: 'Parâmetros inválidos ou nulos' });
   }
 
-  try{
+  try {
+    const resposta = await calender.updateEvent(token, idTarefa, summary, location, description, dataStart, dataEnd);
 
-    const resposta = calender.updateEvent ( token , idTarefa , summary , location , description , dataStart , dataEnd ) ;
+    def.logs(true, `At ${def.dateFormat()} : solicitação realizada com sucesso ${JSON.stringify(resposta)}`);
 
-    def.logs( true , `At ${def.dateFormat()} : solicitação realizada com sucesso ${resposta}` );
+    return res.status(200).json({ mesage: resposta });
 
-    return res.status(200).json( { mesage : reposta });
-
-  }catch(er) { 
-    def.logs( false , `At ${def.dateFormat()} : ${er}` );
-    return res.status(500).json( { mesage : `At ${ def.dateFormat() } , ${ er } `})
+  } catch (er) {
+    def.logs(false, `At ${def.dateFormat()} : ${er}`);
+    return res.status(500).json({ mesage: `At ${def.dateFormat()} , ${er}` });
   }
-
-
 });
+
 
 app.listen(3000, () => {
   console.log("Servidor ativo na porta 3000");
