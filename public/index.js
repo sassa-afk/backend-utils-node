@@ -159,7 +159,7 @@ app.path("/google/calender/edtEvent" , async (req , res )=>{
 
   }catch(er) { 
     def.logs( false , `At ${def.dateFormat()} : ${er}` );
-    return res.status(500).json( { mesage : `At ${} , `})
+    return res.status(500).json( { mesage : `At ${ def.dateFormat() } , ${ er } `})
   }
 
 
