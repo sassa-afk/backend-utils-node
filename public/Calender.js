@@ -136,7 +136,7 @@ class Calender extends Default {
 
   async updateEvent ( token , idTarefa , summary , location , description , dataStart , dataEnd ) {
 
-  	const body {
+  	const body =  {
   		'summary': summary ,
     	'location': location ,
     	'description': description ,
