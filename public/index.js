@@ -123,12 +123,14 @@ app.get("/google/calender/lsCaleder" , async ( req , res ) => {
 
   const reposta = await calender.MyCalenders( token);
 
-  return res.json({ mesage : reposta })
+  return res.json({ mesage : reposta });
+
 }) ;
 
-app.post("/google/calender/newEvent" , async ( req , res ) => {
+app.post( "/google/calender/newEvent" , async ( req , res ) => {
 
   const { token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax } = req.body ;
+  
   if(!token || !local || !descricao || !dataStart  || !dataEnd || !mailMeu || !mailConvidado || !tempMin || !tempMax){
     return res.status(401).json({ mesage : 'Parametros obrigatorio invalidos ou nulo ' });
   };
@@ -139,7 +141,7 @@ app.post("/google/calender/newEvent" , async ( req , res ) => {
   }catch( er ){
     return res.status(500).json({ message: 'Erro ao criar evento.', error: err.message || err });
   }
-});
+})
 
 app.patch("/google/calender/edtEvent", async (req, res) => {
   const { token, idTarefa, summary, location, description, dataStart, dataEnd } = req.body;
@@ -161,6 +163,23 @@ app.patch("/google/calender/edtEvent", async (req, res) => {
   }
 });
 
+app.delete("/google/calender/delEvent" , async ( req , res ) =>{
+
+  const body = { token , idTarefa } = req.body ; 
+
+  if( !token || !idTarefa ){
+    return res.status(401).json({ mesage : 'Parametros nulos' })
+  }
+
+  try{
+    const retorno = await def.deletEvent ( token , idTarefa ) ;
+    return res.status(200).json({ mesage : `At ${def.dateFormat()} : : ${JSON.stringify(retorno)} : `})
+  }catch( er ){
+    return res.status(500).json({ mesage : `At ${def.dateFormat()} : error -> ${er.message}`})
+  }
+
+
+});
 
 app.listen(3000, () => {
   console.log("Servidor ativo na porta 3000");

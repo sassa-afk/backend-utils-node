@@ -134,30 +134,42 @@ class Calender extends Default {
 	  }
   }
 
-async updateEvent(token, idTarefa, summary, location, description, dataStart, dataEnd) {
-  const body = {
-    'summary': summary,
-    'location': location,
-    'description': description,
-    'start': {
-      'dateTime': dataStart,
-      'timeZone': 'America/Sao_Paulo'
-    },
-    'end': {
-      'dateTime': dataEnd,
-      'timeZone': 'America/Sao_Paulo'
-    }
-  };
+	async updateEvent(token, idTarefa, summary, location, description, dataStart, dataEnd) {
+	  const body = {
+	    'summary': summary,
+	    'location': location,
+	    'description': description,
+	    'start': {
+	      'dateTime': dataStart,
+	      'timeZone': 'America/Sao_Paulo'
+	    },
+	    'end': {
+	      'dateTime': dataEnd,
+	      'timeZone': 'America/Sao_Paulo'
+	    }
+	  };
 
-  // logs( true , `At ${def.dateFormat()}, solicitado updateEvent`);
+	  // logs( true , `At ${def.dateFormat()}, solicitado updateEvent`);
 
-  return this.sendDadosMethod(
-    `https://www.googleapis.com/calendar/v3/calendars/primary/events/${idTarefa}`,
-    token,
-    body,
-    "PATCH"
-  );
-}
+	  return this.sendDadosMethod(
+	    `https://www.googleapis.com/calendar/v3/calendars/primary/events/${idTarefa}`,
+	    token,
+	    body,
+	    "PATCH"
+	  );
+	}
+
+	async deletEvent ( token , idTarefa ){
+
+
+		return this.sendDadosMethod(
+			`https://www.googleapis.com/calendar/v3/calendars/primary/events/${idTarefa}`,
+			 token ,
+			 null ,
+			 "DELETE" 
+			);
+
+	}
 
 
 }

@@ -45,7 +45,6 @@ class Default {
   	try{
 
   		const response  = await fetch (
-
   		 urlParametros , {
   			method : mtd ,
 	  		headers : { 
@@ -53,9 +52,13 @@ class Default {
 	  			'Content-type' : 'application/json'
 		  	} ,
   		
-			body: mtd !== 'GET' ? JSON.stringify(body) : null
+			body: mtd !== 'GET' && mtd !=== 'DELETE' ? JSON.stringify(body) : null
 
   		});
+
+  		if( mtd === 'DELETE'){
+  			return response.statusText ;
+  		}
 
   		const data = await response.json();
   		return data ;
