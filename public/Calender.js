@@ -145,7 +145,8 @@ class Calender extends Default {
   	};
 
 
-  	log( true , `At ${ dateFormat() }, solicitado updatEvent  `);
+  	logs( true , `At ${ dateFormat() }, solicitado updatEvent  `);
+
   	return this.sendDadosMethod( `https://www.googleapis.com/calendar/v3/calendars/primary/events/${ idTarefa }` , token , body , "PATCH")
   }
 
