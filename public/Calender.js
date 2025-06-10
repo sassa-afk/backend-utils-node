@@ -1,6 +1,6 @@
 const { google } = require("googleapis");
 const Default = require("./Default");
-const def = new Default();
+// const def = new Default();
 
 class Calender extends Default {
 
@@ -149,7 +149,7 @@ async updateEvent(token, idTarefa, summary, location, description, dataStart, da
     }
   };
 
-  logs(true, `At ${def.dateFormat()}, solicitado updateEvent`);
+  // logs( true , `At ${def.dateFormat()}, solicitado updateEvent`);
 
   return this.sendDadosMethod(
     `https://www.googleapis.com/calendar/v3/calendars/primary/events/${idTarefa}`,
