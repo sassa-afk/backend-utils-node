@@ -109,7 +109,7 @@ class Calender extends Default {
 	        dateTime: dataEnd,
 	        timeZone: "America/Sao_Paulo",
 	      },
-	      recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
+	      // recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
 	      attendees: [
 	        { email: mailMeu },
 	        { email: mailConvidado },
@@ -130,7 +130,7 @@ class Calender extends Default {
 
 	    return { log: response.data };
 	  } catch (er) {
-	    return { log: er };
+	    return { log : er };
 	  }
   }
 
