@@ -52,7 +52,7 @@ class Default {
 	  			'Content-type' : 'application/json'
 		  	} ,
   		
-			body: mtd !== 'GET' && mtd !=== 'DELETE' ? JSON.stringify(body) : null
+			body: mtd !== 'GET' && mtd !== 'DELETE' ? JSON.stringify(body) : null
 
   		});
 
