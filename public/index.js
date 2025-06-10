@@ -172,7 +172,7 @@ app.delete("/google/calender/delEvent" , async ( req , res ) =>{
   }
 
   try{
-    const retorno = await def.deletEvent ( token , idTarefa ) ;
+    const retorno = await calender.deletEvent ( token , idTarefa ) ;
     return res.status(200).json({ mesage : `At ${def.dateFormat()} : : ${JSON.stringify(retorno)} : `})
   }catch( er ){
     return res.status(500).json({ mesage : `At ${def.dateFormat()} : error -> ${er.message}`})
