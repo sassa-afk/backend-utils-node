@@ -134,21 +134,31 @@ class Calender extends Default {
 	  }
   }
 
-  async updateEvent ( token , idTarefa , summary , location , description , dataStart , dataEnd ) {
+async updateEvent(token, idTarefa, summary, location, description, dataStart, dataEnd) {
+  const body = {
+    'summary': summary,
+    'location': location,
+    'description': description,
+    'start': {
+      'dateTime': dataStart,
+      'timeZone': 'America/Sao_Paulo'
+    },
+    'end': {
+      'dateTime': dataEnd,
+      'timeZone': 'America/Sao_Paulo'
+    }
+  };
 
-  	const body =  {
-  		'summary': summary ,
-    	'location': location ,
-    	'description': description ,
-  		"dataStart": dataStart ,
-		"dataEnd": dataEnd 
-  	};
+  logs(true, `At ${def.dateFormat()}, solicitado updateEvent`);
 
+  return this.sendDadosMethod(
+    `https://www.googleapis.com/calendar/v3/calendars/primary/events/${idTarefa}`,
+    token,
+    body,
+    "PATCH"
+  );
+}
 
-  	logs( true , `At ${ dateFormat() }, solicitado updatEvent  `);
-
-  	return this.sendDadosMethod( `https://www.googleapis.com/calendar/v3/calendars/primary/events/${ idTarefa }` , token , body , "PATCH")
-  }
 
 }
 
