@@ -52,7 +52,9 @@ class Default {
 	  			'Authorization' : 	`Bearer ${token}`,
 	  			'Content-type' : 'application/json'
 		  	} ,
-  			body : mtd !== 'GET' ? JSON.stringfy(body) : null
+  		
+			body: mtd !== 'GET' ? JSON.stringify(body) : null
+
   		});
 
   		const data = await response.json();
