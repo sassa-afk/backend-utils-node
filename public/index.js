@@ -5,15 +5,18 @@ const Default = require("./Default");
 const def = new Default() ; 
 
 const express = require("express");
-const lermail = require("nodemailer");
 
 const app = express();
 app.use(express.json());
 
-// --------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------------
+// ------------------------------------  APIS DISPARR MAIL -----------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+
+const lermail = require("nodemailer");
 const Mail = require("./Mail");
 const objMail = new Mail();
-// --------------------------------------------------------
 
 app.get("/mail/enviar", async (req, res) => {
   return res.json({ mesage: `ola mundo ` });
@@ -63,28 +66,12 @@ app.post("/mail/sendMain", async (req, res) => {
   }
 });
 
+// CONSTRUIR MAIL PARA ENVIAR ARQUIVOS  <-------------------------------
 
-// -----------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+// -----------------------------------  APIS CALENDER DO GOOGLE ------------------------------------------
+// -------------------------------------------------------------------------------------------------------
 
-const TelegramService = require('./Telegraf'); // nome do arquivo
-const telegram = new TelegramService();
-
-app.post("/telegram/sendTel_1", async (req, res) => {
-  const { token, msg, telefone } = req.body;
-
-  if (!token || !msg || !telefone) {
-    return res.status(400).json({ message: 'Parâmetros inválidos' });
-  }
-
-  try {
-    const resposta = await telegram.sendMsg1(token, msg, telefone);
-    return res.status(200).json({ message: resposta.log });
-  } catch (err) {
-    return res.status(500).json({ message: `Erro no servidor: ${err}` });
-  }
-});
-
-// -----------------------------------------------------------------------------
 
 const Calender = require('./Calender');
 const calender = new Calender();
@@ -124,7 +111,6 @@ app.get("/google/calender/lsCaleder" , async ( req , res ) => {
   const reposta = await calender.MyCalenders( token);
 
   return res.json({ mesage : reposta });
-
 }) ;
 
 app.post( "/google/calender/newEvent" , async ( req , res ) => {
@@ -177,10 +163,10 @@ app.delete("/google/calender/delEvent" , async ( req , res ) =>{
   }catch( er ){
     return res.status(500).json({ mesage : `At ${def.dateFormat()} : error -> ${er.message}`})
   }
-
-
 });
 
+// -------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------
 app.listen(3000, () => {
   console.log("Servidor ativo na porta 3000");
 });
