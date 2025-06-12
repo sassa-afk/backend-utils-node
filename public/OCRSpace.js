@@ -1,10 +1,12 @@
 const Default = require("./Default");
 
-const form = new FormData() ;
 
 const fs = require('fs');
 const axios = require('axios');
 const path = require('path');
+const FormData = require('form-date')
+
+ 
 
 class OCRSpace extends Default {
 	
