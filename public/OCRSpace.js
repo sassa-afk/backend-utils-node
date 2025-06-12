@@ -23,7 +23,7 @@ class OCRSpace extends Default {
 		    form.append('OCREngine', '2');
 		    form.append('file', fs.createReadStream(imagePath));
 
-		    const reposta = await axios.post(
+		    const retorno = await axios.post(
 		    	'https://api.ocr.space/parse/image',
 		    	form,
 		    	{ 
@@ -31,8 +31,7 @@ class OCRSpace extends Default {
 		    	}
 		    );
 
- 			return `At  ${this.dateFormat()} : ${JSON.stringify(resposta.data , null , 2 )} `;
-
+ 			return `At  ${this.dateFormat()} : ${JSON.stringify(retorno.data , null , 2 )}`;
 
 	 	 }catch( er ){
 	 	 	return `Àt ${this.dateFormat()} : ${er.message} ` ; 
