@@ -29,10 +29,10 @@ class OCRSpace extends Default {
 		    	}
 		    );
 
-		    return `At  ${dateFormat()} : ${JSON.stringify( respostas.data , null , 2 )} `;
+		    return `At  ${this.dateFormat()} : ${JSON.stringify( respostas.data , null , 2 )} `;
 
 	 	 }catch( er ){
-	 	 	return `Àt ${dateFormat()} : ${er.message} ` ; 
+	 	 	return `Àt ${this.dateFormat()} : ${er.message} ` ; 
 
 	 	 }
 	 }
