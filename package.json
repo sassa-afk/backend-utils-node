@@ -1,7 +1,7 @@
 {
   "name": "sendMesage",
   "version": "0.1.0",
-  "description": "Api proxy",
+  "description": "envio de msgs de canais simples",
   "main": "public/index.js",
   "scripts": {
     "start": "node public/index.js"
@@ -16,6 +16,7 @@
     "nodemailer": "^7.0.3",
     "telegraf": "^4.16.3",
     "googleapis": "^132.0.0",
-    "axios": "^1.6.8"
+    "axios": "^1.6.8",
+    "multer": "^1.4.5-lts.1"
   }
 }
