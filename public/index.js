@@ -176,7 +176,7 @@ const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
 app.post("/OCR/fileRead", upload.single("file"), async (req, res) => {
-  const {token} = req.body.token;
+  const {token} = req.body;
   const file = req.file;
 
   if (!token || !file) {
@@ -184,7 +184,7 @@ app.post("/OCR/fileRead", upload.single("file"), async (req, res) => {
   }
 
   try {
-    const resultado = await objOcr.describle(token, file.patch);
+    const resultado = await objOcr.describle(token, file.path);
     return res.status(200).json({ mensagem: resultado });
   } catch (er) {
     return res.status(500).json({ mesage: `At ${def.dateFormat()} Erro: ${er.message}` });
