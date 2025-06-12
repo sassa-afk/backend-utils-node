@@ -4,7 +4,7 @@ const Default = require("./Default");
 const fs = require('fs');
 const axios = require('axios');
 const path = require('path');
-const FormData = require('form-date')
+const FormData = require('form-data');
 
  
 
