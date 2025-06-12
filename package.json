@@ -17,7 +17,7 @@
     "telegraf": "^4.16.3",
     "googleapis": "^132.0.0",
     "axios": "^1.6.8",
-    "form-data": "^4.0.0",
+    "form-data": "^4.0.0"
   }
 
 }
