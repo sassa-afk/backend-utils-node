@@ -9,6 +9,7 @@ class OCRSpace extends Default {
 	 	 try{
 
 	 	 	const form = new FormData();
+	 	 	
 	 	 	form.append('apikey', token);
 		    form.append('language', 'por');
 		    form.append('isOverlayRequired', 'true');
