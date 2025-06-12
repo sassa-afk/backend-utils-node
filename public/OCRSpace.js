@@ -2,12 +2,14 @@ const form = new FormData() ;
 
 const fs = require('fs');
 const axios = require('axios');
+const path = require('path');
 
 class OCRSpace extends Default {
 	
-	 async describle  (token , imagePath  ){
+	 async describle  (token , fileimg  ){
 	 	 try{
 
+	 	 	const imagePath = path.resolve(fileimg);
 	 	 	const form = new FormData();
 	 	 	
 	 	 	form.append('apikey', token);

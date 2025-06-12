@@ -165,6 +165,34 @@ app.delete("/google/calender/delEvent" , async ( req , res ) =>{
   }
 });
 
+// ---------------------------------------------------------------------------------------------------
+// -----------------------------------------  APIS OCRSpace ------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+
+const OCR = require("./OCRSpace");
+const objOcr = new OCR ();
+
+app.post("/OCR/fileRead" , async ( req , res ) => {
+
+  const { token , file } = req.body;
+
+  if( !token || !file ){
+    return res.status(401).json({ mesage : "Parametors obrigatoriso invalidos" });
+  }
+
+  try{
+
+    const resultado = await objOcr.describle(token, file);
+
+    return res.status(200).json({
+      mensagem : resultado
+    });
+  }catch( er ){
+    return res.status(401).json({ mesage : ` at ${def.dateFormat()} , ${er.message} ` });
+  }
+
+});
+
 // -------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------
 app.listen(3000, () => {
