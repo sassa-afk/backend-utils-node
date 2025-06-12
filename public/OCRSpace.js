@@ -7,9 +7,6 @@ const path = require('path');
 const FormData = require('form-data');
 const mime = require('mime-types');
 
-
-const ocrSpace = require('ocr-space-api-wrapper');
-
 class OCRSpace extends Default {
 	
 	 async describle  (token , fileimg  ){
