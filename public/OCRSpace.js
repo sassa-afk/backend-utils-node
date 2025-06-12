@@ -31,7 +31,8 @@ class OCRSpace extends Default {
 		    	}
 		    );
 
-		    return `At  ${this.dateFormat()} : ${JSON.stringify( respostas.data , null , 2 )} `;
+ 			return `At  ${this.dateFormat()} : ${JSON.stringify(resposta.data , null , 2 )} `;
+
 
 	 	 }catch( er ){
 	 	 	return `Àt ${this.dateFormat()} : ${er.message} ` ; 
