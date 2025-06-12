@@ -21,7 +21,11 @@ class OCRSpace extends Default {
 		    form.append('isOverlayRequired', 'true');
 		    form.append('detectOrientation', 'true');
 		    form.append('OCREngine', '2');
-		    form.append('file', fs.createReadStream(imagePath));
+		    form.append('file', fs.createReadStream(imagePath) ,
+		    	{
+		    	filename: path.basename(imagePath),
+        		contentType: 'image/png' 
+		    });
 
 		    const retorno = await axios.post(
 		    	'https://api.ocr.space/parse/image',
