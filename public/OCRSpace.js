@@ -4,38 +4,34 @@ const path = require("path");
 const FormData = require("form-data");
 const mime = require("mime-types");
 
-class OCRSpace {
+class OCRSpace  {
   // Função auxiliar para formatar data/hora brasileira
   dateFormat() {
     const now = new Date();
     return now.toLocaleString("pt-BR");
   }
 
-  async describle(token, fileimg) {
+  async describle(token, fileimg , extencao ) {
     try {
+
       const imagePath = path.resolve(fileimg);
+		if (!fs.existsSync(imagePath)) {
+		  throw new Error(`Arquivo não encontrado em: ${imagePath}`);
+		}
 
-      if (!fs.existsSync(imagePath)) {
-        throw new Error(`Arquivo não encontrado em: ${imagePath}`);
-      }
+		const ext = extencao.toLowerCase();
 
-      // Detecta extensão e content-type dinamicamente
-      const ext = path.extname(imagePath).toLowerCase().replace('.', ''); // ex: 'png', 'jpg', 'pdf'
-      const contentType = mime.lookup(ext) || 'application/octet-stream';
-
-      const form = new FormData();
-      form.append("apikey", token);
-      form.append("language", "por");
-      form.append("isOverlayRequired", "true");
-      form.append("detectOrientation", "true");
-      form.append("OCREngine", "2");
-
-      // Passa a extensão detectada para a API
-      form.append("filetype", ext);
-      form.append("file", fs.createReadStream(imagePath), {
-        filename: path.basename(imagePath),
-        contentType: contentType
-      });
+		const form = new FormData();
+		form.append("apikey", token);
+		form.append("language", "por");
+		form.append("isOverlayRequired", "true");
+		form.append("detectOrientation", "true");
+		form.append("OCREngine", "2");
+		form.append("filetype", ext ); // força extensão
+		form.append("file", fs.createReadStream(imagePath), {
+		  filename: `arquivo.${ext}`,  
+		  contentType: `image/${ext}`
+		});
 
       // Envia requisição para OCR.Space
       const response = await axios.post("https://api.ocr.space/parse/image", form, {
@@ -50,7 +46,7 @@ class OCRSpace {
       return {
         status: "sucesso",
         texto: parsedText.trim(),
-        raw: data, // resposta completa da API
+        raw: data, // inclui a resposta completa da API (opcional)
         timestamp: this.dateFormat()
       };
 

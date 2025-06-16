@@ -176,15 +176,15 @@ const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
 app.post("/OCR/fileRead", upload.single("file"), async (req, res) => {
-  const {token} = req.body;
+  const {token , extencao} = req.body;
   const file = req.file;
 
-  if (!token || !file) {
+  if (!token || !file || !extencao ) {
     return res.status(401).json({ mesage: "Parametors obrigatoriso invalidos" });
   }
 
   try {
-    const resultado = await objOcr.describle(token, file.path);
+    const resultado = await objOcr.describle(token, file.path , extencao );
     return res.status(200).json({ mensagem: resultado });
   } catch (er) {
     return res.status(500).json({ mesage: `At ${def.dateFormat()} Erro: ${er.message}` });
