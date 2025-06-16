@@ -6,10 +6,10 @@ const mime = require("mime-types");
 
 class OCRSpace {
   // Função auxiliar para formatar data/hora brasileira
-  // dateFormat() {
-  //   const now = new Date();
-  //   return now.toLocaleString("pt-BR");
-  // }
+  dateFormat() {
+    const now = new Date();
+    return now.toLocaleString("pt-BR");
+  }
 
   async describle(token, fileimg) {
     try {
