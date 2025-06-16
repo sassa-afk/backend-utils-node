@@ -4,7 +4,7 @@ const path = require("path");
 const FormData = require("form-data");
 const mime = require("mime-types");
 
-class OCRSpace {
+class OCRSpace extends Default {
   // Função auxiliar para formatar data/hora brasileira
   dateFormat() {
     const now = new Date();
@@ -15,28 +15,21 @@ class OCRSpace {
     try {
       // Resolve caminho absoluto do arquivo
       const imagePath = path.resolve(fileimg);
+if (!fs.existsSync(imagePath)) {
+  throw new Error(`Arquivo não encontrado em: ${imagePath}`);
+}
 
-      // Verifica se o arquivo existe
-      if (!fs.existsSync(imagePath)) {
-        throw new Error(`Arquivo não encontrado em: ${imagePath}`);
-      }
-
-      // Detecta a extensão e o content-type
-      const ext = path.extname(imagePath).toLowerCase(); // .png, .jpg, etc.
-      const contentType = mime.lookup(ext) || "image/png";
-
-      // Monta o formulário para enviar à API
-      const form = new FormData();
-      form.append("apikey", token);
-      form.append("language", "por");
-      form.append("isOverlayRequired", "true");
-      form.append("detectOrientation", "true");
-      form.append("OCREngine", "2");
-      form.append("filetype", ext.replace(".", "")); // ex: 'png', 'jpg'
-      form.append("file", fs.createReadStream(imagePath), {
-        filename: path.basename(imagePath),
-        contentType: contentType
-      });
+const form = new FormData();
+form.append("apikey", token);
+form.append("language", "por");
+form.append("isOverlayRequired", "true");
+form.append("detectOrientation", "true");
+form.append("OCREngine", "2");
+form.append("filetype", "png"); // força extensão
+form.append("file", fs.createReadStream(imagePath), {
+  filename: "arquivo.png", // força nome com extensão
+  contentType: "image/png"
+});
 
       // Envia requisição para OCR.Space
       const response = await axios.post("https://api.ocr.space/parse/image", form, {
