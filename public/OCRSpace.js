@@ -4,7 +4,7 @@ const path = require("path");
 const FormData = require("form-data");
 const mime = require("mime-types");
 
-class OCRSpace extends Default {
+class OCRSpace  {
   // Função auxiliar para formatar data/hora brasileira
   dateFormat() {
     const now = new Date();
