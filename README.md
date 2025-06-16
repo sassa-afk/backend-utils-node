@@ -12,7 +12,7 @@
 
 Serviços integrados:
 
-- Nodemailer (Envio de e-mails)
+- Nodemailer (Envio de e-mails, uso confirmado para caixa de mail GMAIL)
 - Google Calendar API (agendamento e eventos)
 - OCR API (leitura de texto a partir de imagens)
  
