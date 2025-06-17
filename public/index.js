@@ -190,6 +190,28 @@ app.post("/google/calender/newToken" , async ( req , res ) =>{
 });
 
 
+/**
+ * @swagger
+ * /google/calender/lsCaleder:
+ *   get:
+ *     summary: Lista os calendários do Google Calendar
+ *     tags:
+ *       - Calender
+ *     parameters:
+ *       - in: query
+ *         name: token
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Token de autenticação OAuth2
+ *     responses:
+ *       200:
+ *         description: Lista de calendários retornada com sucesso
+ *       400:
+ *         description: Requisição inválida
+ *       500:
+ *         description: Erro interno no servidor
+ */
 app.get("/google/calender/lsCaleder" , async ( req , res ) => {
   const {token} = req.query ;
   
@@ -203,6 +225,58 @@ app.get("/google/calender/lsCaleder" , async ( req , res ) => {
   return res.json({ mesage : reposta });
 }) ;
 
+
+/**
+ * @swagger
+ * /google/calender/newEvent:
+ *   post:
+ *     summary: Cria um novo evento no Google Calendar
+ *     tags:
+ *       - Calender
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               token:
+ *                 type: string
+ *                 description: Token OAuth2 do Google
+ *               local:
+ *                 type: string
+ *                 description: Local do evento
+ *               descricao:
+ *                 type: string
+ *                 description: Descrição do evento
+ *               dataStart:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Data e hora de início do evento (ISO 8601)
+ *               dataEnd:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Data e hora de término do evento (ISO 8601)
+ *               mailMeu:
+ *                 type: string
+ *                 description: E-mail do organizador
+ *               mailConvidado:
+ *                 type: string
+ *                 description: E-mail do convidado
+ *               tempMin:
+ *                 type: number
+ *                 description: Temperatura mínima (opcional)
+ *               tempMax:
+ *                 type: number
+ *                 description: Temperatura máxima (opcional)
+ *     responses:
+ *       201:
+ *         description: Evento criado com sucesso
+ *       400:
+ *         description: Requisição inválida
+ *       500:
+ *         description: Erro interno no servidor
+ */
 app.post( "/google/calender/newEvent" , async ( req , res ) => {
 
   const { token , local , descricao , dataStart  , dataEnd , mailMeu , mailConvidado , tempMin , tempMax } = req.body ;
@@ -219,6 +293,60 @@ app.post( "/google/calender/newEvent" , async ( req , res ) => {
   }
 })
 
+
+/**
+ * @swagger
+ * /google/calender/edtEvent:
+ *   patch:
+ *     summary: Edita um evento existente no Google Calendar
+ *     tags:
+ *       - Calender
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - token
+ *               - idTarefa
+ *               - summary
+ *               - location
+ *               - description
+ *               - dataStart
+ *               - dataEnd
+ *             properties:
+ *               token:
+ *                 type: string
+ *                 description: Token OAuth2 do Google
+ *               idTarefa:
+ *                 type: string
+ *                 description: ID do evento a ser editado
+ *               summary:
+ *                 type: string
+ *                 description: Título do evento
+ *               location:
+ *                 type: string
+ *                 description: Local do evento
+ *               description:
+ *                 type: string
+ *                 description: Descrição do evento
+ *               dataStart:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Data e hora de início do evento (ISO 8601)
+ *               dataEnd:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Data e hora de término do evento (ISO 8601)
+ *     responses:
+ *       200:
+ *         description: Evento atualizado com sucesso
+ *       400:
+ *         description: Parâmetros inválidos ou nulos
+ *       500:
+ *         description: Erro ao atualizar o evento
+ */
 app.patch("/google/calender/edtEvent", async (req, res) => {
   const { token, idTarefa, summary, location, description, dataStart, dataEnd } = req.body;
 
@@ -239,6 +367,40 @@ app.patch("/google/calender/edtEvent", async (req, res) => {
   }
 });
 
+
+
+
+/**
+ * @swagger
+ * /google/calender/delEvent:
+ *   delete:
+ *     summary: Exclui um evento do Google Calendar
+ *     tags:
+ *       - Calender
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - token
+ *               - idTarefa
+ *             properties:
+ *               token:
+ *                 type: string
+ *                 description: Token OAuth2 do Google
+ *               idTarefa:
+ *                 type: string
+ *                 description: ID do evento a ser excluído
+ *     responses:
+ *       200:
+ *         description: Evento excluído com sucesso
+ *       401:
+ *         description: Parâmetros nulos ou não autorizados
+ *       500:
+ *         description: Erro ao excluir o evento
+ */
 app.delete("/google/calender/delEvent" , async ( req , res ) =>{
 
   const body = { token , idTarefa } = req.body ; 
