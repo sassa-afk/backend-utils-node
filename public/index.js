@@ -34,7 +34,7 @@ app.get("/usuarios", (req, res) => {
  
 // ------------------------------------------------------------------------------------------------
 
-const postUsuariosAnnotation = swg1(
+const sw1 = docApiSwg(
   'get', 
   'testes', 
   'Cria um novo usuário',
