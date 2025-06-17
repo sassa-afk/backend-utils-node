@@ -55,7 +55,8 @@ app.get("/usuarios", (req, res) => {
  *     responses:
  *       200:
  *         description: Lista de usuários
- * 
+ */
+
  app.get("/teste", (req, res) => {
   return  res.json({ mesage: `ola mundo 2 do teste` });
 });
