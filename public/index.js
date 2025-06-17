@@ -19,8 +19,7 @@ const { swaggerUi, specs } = require("./swagger");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 
-// const express = require("express");
-// const router = express.Router();
+ const router = express.Router();
 
 /**
  * @swagger
@@ -31,7 +30,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
  *       200:
  *         description: Lista de usuários
  */
-app.get("/usuario", (req, res) => {
+router.get("/usuario", (req, res) => {
   return  res.json({ mesage: `ola mundo ` });
 });
 
