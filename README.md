@@ -6,15 +6,13 @@
 # Backend Utils Node
  
 
- Api proxy é um projeto misto de varias apis usuáis no quais apliquei em alguns trabalhos freelance  com interações  alguns serviços no node, sendo eles 
-
-é um projeto integrado que reúne diversas APIs úteis, desenvolvidas e aplicadas em trabalhos freelance. O objetivo foi centralizar e facilitar a comunicação com serviços externos por meio de uma estrutura em Node.js.
+Ete projeto integrado que reúne diversas APIs úteis, desenvolvidas e aplicadas em trabalhos freelance. O objetivo foi centralizar e facilitar a comunicação com serviços externos por meio de uma estrutura em Node.js.
 
 Serviços integrados:
 
-- Nodemailer (Envio de e-mails, uso confirmado para caixa de mail GMAIL)
-- Google Calendar API (agendamento de eventos)
-- OCR API (leitura de texto a partir de imagens)
+- **Nodemailer** (Envio de e-mails, uso confirmado para caixa de mail GMAIL)
+- **Google Calendar** API (agendamento de eventos)
+- **OCR API** (leitura de texto a partir de imagens)
  
  Esse projeto demonstra minha habilidade em consumir e integrar APIs, construir middlewares personalizados e automatizar processos em aplicações Node.js.
 
@@ -25,7 +23,8 @@ Sinta-se à vontade para testar a aplicação! Porém, vale lembrar que o servid
 
 Por isso, o primeiro acesso após um período inativo pode levar alguns segundos a mais para carregar. Após isso, as requisições funcionam normalmente. 
 
--- Link swagger das apis construidas :  https://sendmesage.onrender.com/api-docs/#/
+	> Link swagger das apis construidas :  https://sendmesage.onrender.com/api-docs/#/
+
 # Estrutra do projeto 
 
 	│
