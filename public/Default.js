@@ -1,6 +1,6 @@
 class Default {
  
-	dateFormat() {
+  dateFormat() {
 	  const date = new Date();
 	  const day = String(date.getDate()).padStart(2, "0");
 	  const month = String(date.getMonth() + 1).padStart(2, "0"); // meses começam do 0
@@ -10,16 +10,16 @@ class Default {
 	  const seconds = String(date.getSeconds()).padStart(2, "0");
 
 	  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-	}
+  }
 
-	logs( tipo , mensagem ){
+  logs( tipo , mensagem ){
 
 			if(tipo === true){
 				console.log(`At ${ this.dateFormat() } - ${mensagem}`)
 			}else{
 				console.error(`At ${ this.dateFormat() } - ${mensagem}`)
 			}
-	}
+  }
 
   async getMethod ( urlParametros , token ){
 
@@ -67,9 +67,6 @@ class Default {
   		return er ;
   	}
   }
-
-
-
 
 }
 

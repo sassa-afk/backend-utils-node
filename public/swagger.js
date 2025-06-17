@@ -6,7 +6,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Minha API',
+      title: 'Documentação APIs backend-utils-node ',
       version: '1.0.0',
     },
   },
@@ -15,18 +15,9 @@ const options = {
 
 const specs = swaggerJsdoc(options);
 
-const docApiSwg = (meotdo , rota , descricao , resposta ) => {
- return `/**
- * @swagger
- * /${rota}:
- *   ${meotdo}:
- *     summary: ${descricao}
- *     responses: ${JSON.stringify(resposta, null, 2)}
- */`;   
-}
 
 module.exports = {
   swaggerUi,
   specs,
-  docApiSwg,
+   
 };

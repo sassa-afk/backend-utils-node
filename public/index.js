@@ -15,51 +15,10 @@ app.use(express.json());
 // --------------------------------------  Swagger  ------------------------------------------
 // ------------------------------------------------------------------------------------------------
 
-const { swaggerUi , specs , docApiSwg } = require("./swagger");
+const { swaggerUi , specs  } = require("./swagger");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-
-/**
- * @swagger
- * /usuarios:
- *   get:
- *     summary: Retorna todos os usuários
- *     responses:
- *       200:
- *         description: Lista de usuários
- */
-app.get("/usuarios", (req, res) => {
-  return  res.json({ mesage: `ola mundo ` });
-});
- 
-// ------------------------------------------------------------------------------------------------
-
-// const sw1 = docApiSwg(
-//   'get', 
-//   'testes', 
-//   'Cria um novo usuário',
-//   {
-//     201: { description: 'Usuário criado com sucesso' },
-//     400: { description: 'Dados inválidos' },
-//     500: { description: 'Erro ao criar o usuário' },
-//   }
-// );
-// console.log(docApiSwg);
-
-
-/**
- * @swagger
- * /teste:
- *   get:
- *     summary: Retorna todos os usuários
- *     responses:
- *       200:
- *         description: Lista de usuários
- */
-
- app.get("/teste", (req, res) => {
-  return  res.json({ mesage: `ola mundo 2 do teste` });
-});
+// -------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------
 // ------------------------------------  APIS DISPARR MAIL -----------------------------------------------
 // -------------------------------------------------------------------------------------------------------
@@ -68,9 +27,61 @@ const lermail = require("nodemailer");
 const Mail = require("./Mail");
 const objMail = new Mail();
 
+
+
+
 app.get("/mail/enviar", async (req, res) => {
   return res.json({ mesage: `ola mundo ` });
 });
+
+
+ /**
+ * @swagger
+ * /mail/sendMailSimples:
+ *   post:
+ *     summary: Envia e-mails simples sem anexos
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               hst:
+ *                 type: string
+ *                 description: Host do servidor de e-mail
+ *               port:
+ *                 type: string
+ *                 description: Porta do servidor
+ *               secure:
+ *                 type: boolean
+ *                 description: Usar conexão segura (SSL/TLS)
+ *               user:
+ *                 type: string
+ *                 description: E-mail do remetente (usuário)
+ *               pass:
+ *                 type: string
+ *                 description: Senha do remetente
+ *               mailTo:
+ *                 type: string
+ *                 description: E-mail do destinatário
+ *               titulo:
+ *                 type: string
+ *                 description: Título (assunto) do e-mail
+ *               msgHTML:
+ *                 type: string
+ *                 description: Corpo do e-mail em HTML
+ *               msgText:
+ *                 type: string
+ *                 description: Corpo do e-mail em texto simples
+ *     responses:
+ *       200:
+ *         description: E-mail enviado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       500:
+ *         description: Erro no envio do e-mail
+ */
 
 app.post("/mail/sendMailSimples", async (req, res) => {
   const { hst, port, secure, user, pass, mailTo, titulo, msgHTML, msgText } =
