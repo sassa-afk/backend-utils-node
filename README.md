@@ -18,5 +18,21 @@ Serviços integrados:
  
  Esse projeto demonstra minha habilidade em consumir e integrar APIs, construir middlewares personalizados e automatizar processos em aplicações Node.js.
 
-**OBS > Este projeto projeto está ativo no serviço Render
+**OBS : Este projeto projeto está ativo no serviço Render
+-- Link swagger das apis construidas :  https://sendmesage.onrender.com/api-docs/#/
+# Estrutra do projeto 
+
+	├
+	├── package.json
+	├── public
+	│   ├── Calender.js
+	│   ├── Default.js
+	│   ├── index.js
+	│   ├── Mail.js
+	│   ├── OCRSpace.js
+	│   ├── swagger.js
+	│   └── SwgDoc.js
+	└── README.md
+
+
 ---
