@@ -3,7 +3,7 @@
 - Atualmente estudo e crio projetos com intenção aplicar meus conhecimentos passados ao longo de minha experiência academica e no mercado de trabalho 
 - 📫 Você consegue chegar até mim através do email samuelsouto21@gmail.com .
 
-# Backend Utils Node
+# Backend Utils Node Js
  
 
 Ete projeto integrado que reúne diversas APIs úteis, desenvolvidas e aplicadas em trabalhos freelance. O objetivo foi centralizar e facilitar a comunicação com serviços externos por meio de uma estrutura em Node.js.
@@ -23,7 +23,8 @@ Sinta-se à vontade para testar a aplicação! Porém, vale lembrar que o servid
 
 Por isso, o primeiro acesso após um período inativo pode levar alguns segundos a mais para carregar. Após isso, as requisições funcionam normalmente. 
 
-	> Link swagger das apis construidas :  https://sendmesage.onrender.com/api-docs/#/
+**Link swagger das apis construidas :**
+	  https://sendmesage.onrender.com/api-docs/#/
 
 # Estrutra do projeto 
 
@@ -38,6 +39,7 @@ Por isso, o primeiro acesso após um período inativo pode levar alguns segundos
 	│   ├── swagger.js
 	│   └── SwgDoc.js
 	└── README.md
+
 ---
 
 # Tecnologias e middlewares Node.js utilizados no projeto
@@ -57,3 +59,11 @@ Por isso, o primeiro acesso após um período inativo pode levar alguns segundos
 - **swagger-ui-express** – Interface web para visualização da documentação Swagger.
 
 ---
+
+# Como adquirir token de autenticação de permições das apis ?
+
+>Senha de acesso  Gmail para enviar e-mails
+
+>Auth2 Google Calender 
+
+>Token de Auth do ORCSpace
