@@ -44,6 +44,7 @@ const sw1 = docApiSwg(
     500: { description: 'Erro ao criar o usuário' },
   }
 );
+console.log(docApiSwg);
 
  app.get("/teste", (req, res) => {
   return  res.json({ mesage: `ola mundo 2 do teste` });
