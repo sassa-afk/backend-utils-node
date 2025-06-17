@@ -1,13 +1,11 @@
-
+const Default = require("./Default");
 const fs = require("fs");
 const axios = require("axios");
 const path = require("path");
 const FormData = require("form-data");
-const mime = require("mime-types");
-
-class OCRSpace  {
  
-
+class OCRSpace extends Default  {
+ 
   async describle(token, fileimg , extencao ) {
     try {
 
@@ -24,37 +22,36 @@ class OCRSpace  {
 		form.append("isOverlayRequired", "true");
 		form.append("detectOrientation", "true");
 		form.append("OCREngine", "2");
-		form.append("filetype", ext ); // força extensão
+		form.append("filetype", ext ); 
 		form.append("file", fs.createReadStream(imagePath), {
 		  filename: `arquivo.${ext}`,  
 		  contentType: `image/${ext}`
 		});
 
-      // Envia requisição para OCR.Space
-      const response = await axios.post("https://api.ocr.space/parse/image", form, {
+       const response = await axios.post("https://api.ocr.space/parse/image", form, {
         headers: form.getHeaders()
       });
 
       const data = response.data;
 
-      // Extrai texto, se disponível
-      const parsedText = data?.ParsedResults?.[0]?.ParsedText || "Texto não encontrado";
+       const parsedText = data?.ParsedResults?.[0]?.ParsedText || "Texto não encontrado";
 
       return {
         status: "sucesso",
         texto: parsedText.trim(),
-        raw: data,  
+        raw: data , 
         timestamp: this.dateFormat()
       };
 
-    } catch (er) {
+    } catch (er) { 
       return {
         status: "erro",
-        message: er.message,
+        message: er.message , 
         timestamp: this.dateFormat()
       };
     }
   }
+
 }
 
 module.exports = OCRSpace;
