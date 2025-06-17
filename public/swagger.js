@@ -9,6 +9,18 @@ const options = {
       title: 'Documentação APIs backend-utils-node ',
       version: '1.0.0',
     },
+
+    tags :[
+    	{
+    		nome : 'Mail',
+    		description : 'Rotas para e-mails',
+    	},
+    	{
+    		nome : 'Calender',
+    		description : 'Rotas para api do Google Calender',
+    	},
+
+    ],
   },
   apis: ['./public/*.js'],  
 };

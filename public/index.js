@@ -32,11 +32,13 @@ app.get("/mail/enviar", async (req, res) => {
 });
 
 
- /**
+ /** 
  * @swagger
  * /mail/sendMailSimples:
  *   post:
  *     summary: Envia e-mails simples sem anexos
+ *     tags : 
+ *       - Mail
  *     requestBody:
  *       required: true
  *       content:
@@ -137,9 +139,11 @@ const calender = new Calender();
 
  /**
  * @swagger
- * /mail/sendMailSimples:
+ * /google/calender/newToken:
  *   post:
  *     summary: Envia e-mails simples sem anexos
+ *     tags:
+ *        - Calender
  *     requestBody:
  *       required: true
  *       content:
