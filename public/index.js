@@ -27,9 +27,6 @@ const lermail = require("nodemailer");
 const Mail = require("./Mail");
 const objMail = new Mail();
 
-
-
-
 app.get("/mail/enviar", async (req, res) => {
   return res.json({ mesage: `ola mundo ` });
 });
@@ -137,6 +134,33 @@ app.post("/mail/sendMailSimples", async (req, res) => {
 const Calender = require('./Calender');
 const calender = new Calender();
 
+
+ /**
+ * @swagger
+ * /mail/sendMailSimples:
+ *   post:
+ *     summary: Envia e-mails simples sem anexos
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               client_id:
+ *                 type: string
+ *                 description: ID cliente gerado no auth2 do google calender
+ *               client_secret:
+ *                 type: string
+ *                 description: ID sercret cliente gerado no auth2 do google calender
+ *     responses:
+ *       200:
+ *         description: E-mail enviado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       500:
+ *         description: Erro no envio do e-mail
+ */
 app.post("/google/calender/newToken" , async ( req , res ) =>{
 
   const { client_id , client_secret  } = req.body ; 
@@ -160,6 +184,7 @@ app.post("/google/calender/newToken" , async ( req , res ) =>{
     return res.status(500).json( { mesage : `Erro ao gerar token  ${er} ` });
   }
 });
+
 
 app.get("/google/calender/lsCaleder" , async ( req , res ) => {
   const {token} = req.query ;
