@@ -18,11 +18,12 @@ Serviços integrados:
  
  Esse projeto demonstra minha habilidade em consumir e integrar APIs, construir middlewares personalizados e automatizar processos em aplicações Node.js.
 
-**OBS : Este projeto projeto está ativo no serviço Render
+**OBS :** Este projeto projeto está ativo no serviço Render
+
 -- Link swagger das apis construidas :  https://sendmesage.onrender.com/api-docs/#/
 # Estrutra do projeto 
 
-	├
+	│
 	├── package.json
 	├── public
 	│   ├── Calender.js
@@ -33,6 +34,22 @@ Serviços integrados:
 	│   ├── swagger.js
 	│   └── SwgDoc.js
 	└── README.md
+---
 
+# Tecnologias e middlewares Node.js utilizados no projeto
+
+	- **express** – Framework para criação do servidor HTTP.
+	- **cors** – Middleware para habilitar CORS (Cross-Origin Resource Sharing).
+	- **dotenv** – Carrega variáveis de ambiente a partir de um arquivo `.env`.
+	- **body-parser** – Faz o parsing do corpo das requisições (JSON, URL-encoded).
+	- **jsonwebtoken** – Geração e verificação de tokens JWT.
+	- **nodemailer** – Envio de e-mails via SMTP.
+	- **googleapis** – Integrações com APIs do Google (ex: Google Calendar).
+	- **axios** – Cliente HTTP para requisições externas.
+	- **form-data** – Manipulação de dados no formato `multipart/form-data`.
+	- **multer** – Middleware para upload de arquivos.
+	- **mime-types** – Detecta o tipo MIME de arquivos.
+	- **swagger-jsdoc** – Geração da documentação Swagger a partir de comentários JSDoc.
+	- **swagger-ui-express** – Interface web para visualização da documentação Swagger.
 
 ---
