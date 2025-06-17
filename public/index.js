@@ -427,7 +427,6 @@ const objOcr = new OCR ();
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
-
 /**
  * @swagger
  * /OCR/fileRead:
@@ -451,7 +450,7 @@ const upload = multer({ dest: 'uploads/' });
  *                 description: Token da API do OCR.Space
  *               extencao:
  *                 type: string
- *                 description: Extensão do arquivo (ex: png, jpg, pdf)
+ *                 description: "Extensão do arquivo (ex: png, jpg, pdf)"
  *               file:
  *                 type: string
  *                 format: binary
@@ -464,6 +463,7 @@ const upload = multer({ dest: 'uploads/' });
  *       500:
  *         description: Erro ao processar OCR
  */
+
 app.post("/OCR/fileRead", upload.single("file"), async (req, res) => {
   const {token , extencao} = req.body;
   const file = req.file;
