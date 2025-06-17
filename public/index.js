@@ -34,18 +34,28 @@ app.get("/usuarios", (req, res) => {
  
 // ------------------------------------------------------------------------------------------------
 
-const sw1 = docApiSwg(
-  'get', 
-  'testes', 
-  'Cria um novo usuário',
-  {
-    201: { description: 'Usuário criado com sucesso' },
-    400: { description: 'Dados inválidos' },
-    500: { description: 'Erro ao criar o usuário' },
-  }
-);
-console.log(docApiSwg);
+// const sw1 = docApiSwg(
+//   'get', 
+//   'testes', 
+//   'Cria um novo usuário',
+//   {
+//     201: { description: 'Usuário criado com sucesso' },
+//     400: { description: 'Dados inválidos' },
+//     500: { description: 'Erro ao criar o usuário' },
+//   }
+// );
+// console.log(docApiSwg);
 
+
+/**
+ * @swagger
+ * /teste:
+ *   get:
+ *     summary: Retorna todos os usuários
+ *     responses:
+ *       200:
+ *         description: Lista de usuários
+ * 
  app.get("/teste", (req, res) => {
   return  res.json({ mesage: `ola mundo 2 do teste` });
 });
