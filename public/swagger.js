@@ -1,27 +1,17 @@
-// swagger.js
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
+const express = require("express");
+const router = express.Router();
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Minha API",
-      version: "1.0.0",
-      description: "Documentação da API com Swagger UI hospedado",
-    },
-    servers: [
-      {
-        url: "https://sendmesage.onrender.com/mail/enviar", // ajuste para produção se necessário
-      },
-    ],
-  },
-  apis: ["./routes/*.js"], // arquivos com rotas/documentação
-};
+/**
+ * @swagger
+ * /usuarios:
+ *   get:
+ *     summary: Retorna todos os usuários
+ *     responses:
+ *       200:
+ *         description: Lista de usuários
+ */
+router.get("/usuarios", (req, res) => {
+  res.json([{ nome: "João" }, { nome: "Maria" }]);
+});
 
-const specs = swaggerJsdoc(options);
-
-module.exports = {
-  swaggerUi,
-  specs,
-};
+module.exports = router;
