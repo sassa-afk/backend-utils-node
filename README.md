@@ -13,10 +13,10 @@
 Serviços integrados:
 
 - Nodemailer (Envio de e-mails, uso confirmado para caixa de mail GMAIL)
-- Google Calendar API (agendamento e eventos)
+- Google Calendar API (agendamento de eventos)
 - OCR API (leitura de texto a partir de imagens)
  
  Esse projeto demonstra minha habilidade em consumir e integrar APIs, construir middlewares personalizados e automatizar processos em aplicações Node.js.
 
-
+**OBS > Este projeto projeto está ativo no serviço Render
 ---

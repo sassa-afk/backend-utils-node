@@ -1,3 +1,4 @@
+
 const fs = require("fs");
 const axios = require("axios");
 const path = require("path");
@@ -5,11 +6,7 @@ const FormData = require("form-data");
 const mime = require("mime-types");
 
 class OCRSpace  {
-  // Função auxiliar para formatar data/hora brasileira
-  dateFormat() {
-    const now = new Date();
-    return now.toLocaleString("pt-BR");
-  }
+ 
 
   async describle(token, fileimg , extencao ) {
     try {
@@ -46,7 +43,7 @@ class OCRSpace  {
       return {
         status: "sucesso",
         texto: parsedText.trim(),
-        raw: data, // inclui a resposta completa da API (opcional)
+        raw: data,  
         timestamp: this.dateFormat()
       };
 
