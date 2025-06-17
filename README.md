@@ -6,7 +6,7 @@
 # Backend Utils Node Js
  
 
-Ete projeto integrado que reúne diversas APIs úteis, desenvolvidas e aplicadas em trabalhos freelance. O objetivo foi centralizar e facilitar a comunicação com serviços externos por meio de uma estrutura em Node.js.
+Esté é um projeto integrado que reúne diversas APIs úteis desenvolvido com o serviço node.js atraves de apis que desenvolvidas e aplicadas em trabalhos freelance. O objetivo foi centralizar e facilitar a comunicação com serviços externos por meio de uma estrutura em Node.js.
 
 Serviços integrados:
 
@@ -62,8 +62,8 @@ Por isso, o primeiro acesso após um período inativo pode levar alguns segundos
 
 # Como adquirir token de autenticação de permições das apis ?
 
->Senha de acesso  Gmail para enviar e-mails
+>**Senha de acesso  Gmail para enviar e-mails**
 
->Auth2 Google Calender 
+>**Auth2 Google Calender**
 
->Token de Auth do ORCSpace
+>**Token de Auth do ORCSpace**
