@@ -18,7 +18,12 @@ Serviços integrados:
  
  Esse projeto demonstra minha habilidade em consumir e integrar APIs, construir middlewares personalizados e automatizar processos em aplicações Node.js.
 
-**OBS :** Este projeto projeto está ativo no serviço Render
+**ℹ️ Observação:**
+As rotas descritas neste projeto estão disponíveis na documentação Swagger hospedada no serviço web Render.
+
+Sinta-se à vontade para testar a aplicação! Porém, vale lembrar que o servidor utiliza o plano gratuito da Render, o que ativa a funcionalidade de "sleep mode" — ou seja, o servidor entra em repouso quando não há requisições por um tempo.
+
+Por isso, o primeiro acesso após um período inativo pode levar alguns segundos a mais para carregar. Após isso, as requisições funcionam normalmente. 
 
 -- Link swagger das apis construidas :  https://sendmesage.onrender.com/api-docs/#/
 # Estrutra do projeto 
@@ -38,18 +43,18 @@ Serviços integrados:
 
 # Tecnologias e middlewares Node.js utilizados no projeto
 
-	- **express** – Framework para criação do servidor HTTP.
-	- **cors** – Middleware para habilitar CORS (Cross-Origin Resource Sharing).
-	- **dotenv** – Carrega variáveis de ambiente a partir de um arquivo `.env`.
-	- **body-parser** – Faz o parsing do corpo das requisições (JSON, URL-encoded).
-	- **jsonwebtoken** – Geração e verificação de tokens JWT.
-	- **nodemailer** – Envio de e-mails via SMTP.
-	- **googleapis** – Integrações com APIs do Google (ex: Google Calendar).
-	- **axios** – Cliente HTTP para requisições externas.
-	- **form-data** – Manipulação de dados no formato `multipart/form-data`.
-	- **multer** – Middleware para upload de arquivos.
-	- **mime-types** – Detecta o tipo MIME de arquivos.
-	- **swagger-jsdoc** – Geração da documentação Swagger a partir de comentários JSDoc.
-	- **swagger-ui-express** – Interface web para visualização da documentação Swagger.
+- **express** – Framework para criação do servidor HTTP.
+- **cors** – Middleware para habilitar CORS (Cross-Origin Resource Sharing).
+- **dotenv** – Carrega variáveis de ambiente a partir de um arquivo `.env`.
+- **body-parser** – Faz o parsing do corpo das requisições (JSON, URL-encoded).
+- **jsonwebtoken** – Geração e verificação de tokens JWT.
+- **nodemailer** – Envio de e-mails via SMTP.
+- **googleapis** – Integrações com APIs do Google (ex: Google Calendar).
+- **axios** – Cliente HTTP para requisições externas.
+- **form-data** – Manipulação de dados no formato `multipart/form-data`.
+- **multer** – Middleware para upload de arquivos.
+- **mime-types** – Detecta o tipo MIME de arquivos.
+- **swagger-jsdoc** – Geração da documentação Swagger a partir de comentários JSDoc.
+- **swagger-ui-express** – Interface web para visualização da documentação Swagger.
 
 ---
