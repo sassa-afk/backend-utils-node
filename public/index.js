@@ -17,6 +17,25 @@ app.use(express.json());
 
 const { swaggerUi, specs } = require("./swagger");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+
+// const express = require("express");
+// const router = express.Router();
+
+/**
+ * @swagger
+ * /usuarios:
+ *   get:
+ *     summary: Retorna todos os usuários
+ *     responses:
+ *       200:
+ *         description: Lista de usuários
+ */
+app.get("/usuario", (req, res) => {
+  return  res.json({ mesage: `ola mundo ` });
+});
+
+
  
 // -------------------------------------------------------------------------------------------------------
 // ------------------------------------  APIS DISPARR MAIL -----------------------------------------------
