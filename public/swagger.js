@@ -10,12 +10,23 @@ const options = {
       version: '1.0.0',
     },
   },
-  apis: ['./public/*.js'], // Ou onde estão suas rotas
+  apis: ['./public/*.js'],  
 };
 
 const specs = swaggerJsdoc(options);
 
+const docApiSwg = (meotdo , rota , descricao , resposta ) => {
+ return `/**
+ * @swagger
+ * /${rota}:
+ *   ${meotdo}:
+ *     summary: ${descricao}
+ *     responses: ${JSON.stringify(resposta, null, 2)}
+ */`;   
+}
+
 module.exports = {
   swaggerUi,
   specs,
+  docApiSwg,
 };

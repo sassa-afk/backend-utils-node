@@ -15,7 +15,7 @@ app.use(express.json());
 // --------------------------------------  Swagger  ------------------------------------------
 // ------------------------------------------------------------------------------------------------
 
-const { swaggerUi , specs } = require("./swagger");
+const { swaggerUi , specs , docApiSwg } = require("./swagger");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 
@@ -32,6 +32,22 @@ app.get("/usuarios", (req, res) => {
   return  res.json({ mesage: `ola mundo ` });
 });
  
+// ------------------------------------------------------------------------------------------------
+
+const postUsuariosAnnotation = swg1(
+  'get', 
+  'testes', 
+  'Cria um novo usuário',
+  {
+    201: { description: 'Usuário criado com sucesso' },
+    400: { description: 'Dados inválidos' },
+    500: { description: 'Erro ao criar o usuário' },
+  }
+);
+
+ app.get("/teste", (req, res) => {
+  return  res.json({ mesage: `ola mundo 2 do teste` });
+});
 // -------------------------------------------------------------------------------------------------------
 // ------------------------------------  APIS DISPARR MAIL -----------------------------------------------
 // -------------------------------------------------------------------------------------------------------
