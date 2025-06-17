@@ -11,7 +11,11 @@ const router = express.Router();
  *         description: Lista de usuários
  */
 router.get("/usuarios", (req, res) => {
-  res.json([{ nome: "João" }, { nome: "Maria" }]);
+  return  res.json({ mesage: `ola mundo ` });
 });
+
+// app.get("/mail/enviar", async (req, res) => {
+//   return res.json({ mesage: `ola mundo ` });
+// });
 
 module.exports = router;
