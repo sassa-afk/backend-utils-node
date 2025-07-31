@@ -60,10 +60,31 @@ Por isso, o primeiro acesso após um período inativo pode levar alguns segundos
 
 ---
 
-# Como adquirir token de autenticação de permições das apis ?
-
+# Como adquirir token de autenticação de permições das apis do google ?
+>
 >**Senha de acesso  Gmail para enviar e-mails**
-
+>
+---
+ https://support.google.com/accounts/answer/185833?hl=pt-BR
+---
+>
 >**Auth2 Google Calender**
+>
+---
+[ https://support.google.com/accounts/answer/185833?hl=pt-BR
+](https://developers.google.com/identity/protocols/oauth2?hl=pt-br)
+---
 
 >**Token de Auth do ORCSpace**
+>
+> 1 - Acesse a página de registro em ocr.space/ocrapi
+>
+> 2 - Insira seu e-mail (nome é opcional) e finalize o cadastro
+>
+>3 - Você receberá por e-mail sua API key (token de acesso) imediatamente
+>
+>4 - Acesse a documentação com exemplos de uso da chave em diferentes linguagens
+>
+---
+https://ocr.space/ocrapi
+---
